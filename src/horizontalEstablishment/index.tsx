@@ -29,9 +29,9 @@ interface IProps {
 }
 
 const images: any = {
-  espacoCafeBistro: require('../../assets/images/espaco-cafe-bistro.jpg'),
-  barBoemia: require('../../assets/images/bar-boemia.jpg'),
-  lessyModas: require('../../assets/images/lessy-modas.jpg'),
+  espacoCafeBistro: require('../assets/images/espaco-cafe-bistro.jpg'),
+  barBoemia: require('../assets/images/bar-boemia.jpg'),
+  lessyModas: require('../assets/images/lessy-modas.jpg'),
 };
 
 const HorizontalEstablishment = (props: IProps) => {

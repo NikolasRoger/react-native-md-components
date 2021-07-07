@@ -47,8 +47,8 @@ interface IProps {
 }
 
 const images: any = {
-  sendIllustration: require('../../assets/images/login-illustration.png'),
-  clockIllustration: require('../../assets/images/clock-illustration.png'),
+  sendIllustration: require('../assets/images/login-illustration.png'),
+  clockIllustration: require('../assets/images/clock-illustration.png'),
 };
 
 const Info = (props: IProps) => {

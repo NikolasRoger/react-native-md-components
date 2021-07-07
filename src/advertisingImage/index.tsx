@@ -26,10 +26,10 @@ interface IProps {
 }
 
 const images: any = {
-  purpleGradient: require('../../assets/images/purple-gradient.png'),
-  moneyIllustration: require('../../assets/images/conta-astecas-illustration.png'),
-  blueGradient: require('../../assets/images/blue-gradient.png'),
-  socialIllustration: require('../../assets/images/social-illustration.png'),
+  purpleGradient: require('../assets/images/purple-gradient.png'),
+  moneyIllustration: require('../assets/images/conta-astecas-illustration.png'),
+  blueGradient: require('../assets/images/blue-gradient.png'),
+  socialIllustration: require('../assets/images/social-illustration.png'),
 };
 
 const AdvertisingImage = (props: IProps) => {

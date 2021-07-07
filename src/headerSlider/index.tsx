@@ -17,7 +17,7 @@ const {width: windowWidth} = Dimensions.get('window');
 const slideList = [
   {
     id: 1,
-    image: require('../../assets/images/home-illustration.png'),
+    image: require('../assets/images/home-illustration.png'),
     title: 'Você possui um novo cupom!',
     subtitle: 'Use o seu cupom na sua próxima compra',
   },

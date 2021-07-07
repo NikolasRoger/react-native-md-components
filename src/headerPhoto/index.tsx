@@ -52,11 +52,11 @@ const HeaderPhoto = (props: IProps) => {
         </InfoRow>
       </InfoContainer>
       <Photo
-        source={require('../src/assets/images/lessy-modas.jpg')}
+        source={require('../assets/lessy-modas.jpg')}
         style={{tintColor: 'black'}}
       />
       <Photo
-        source={require('../src/assets/images/lessy-modas.jpg')}
+        source={require('../assets/lessy-modas.jpg')}
         style={{opacity: 0.5}}
       />
     </Container>

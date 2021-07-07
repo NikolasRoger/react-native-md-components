@@ -29,11 +29,11 @@ interface IProps {
 }
 
 const images: any = {
-  boneFlores: require('../src/assets/images/bone-flores.jpg'),
-  camisaInfuse: require('../src/assets/images/camisa-infuse.jpg'),
-  vestidoBabado: require('../src/assets/images/vestido-babado.jpg'),
-  blusaBeYou: require('../src/assets/images/blusa-be-you.jpg'),
-  croppedSimples: require('../src/assets/images/cropped-simples.jpg'),
+  boneFlores: require('../assets/bone-flores.jpg'),
+  camisaInfuse: require('../assets/camisa-infuse.jpg'),
+  vestidoBabado: require('../assets/vestido-babado.jpg'),
+  blusaBeYou: require('../assets/blusa-be-you.jpg'),
+  croppedSimples: require('../assets/cropped-simples.jpg'),
 };
 
 const ProductList = (props: IProps) => {

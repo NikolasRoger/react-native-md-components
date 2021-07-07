@@ -22,7 +22,7 @@ const IconButton = () => {
 
         elevation: 4,
       }}>
-      <Coin source={require('../src/assets/images/moeda.png')}></Coin>
+      <Coin source={require('../assets/moeda.png')}></Coin>
     </Container>
   );
 };

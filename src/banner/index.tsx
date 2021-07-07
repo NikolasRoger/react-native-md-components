@@ -33,9 +33,9 @@ interface IProps {
 }
 
 const images: any = {
-  loginIllustration: require('../src/assets/images/login-illustration.png'),
-  faqIllustration: require('../src/assets/images/faq-illustration.png'),
-  serviceIllustration: require('../src/assets/images/service-illustration.png'),
+  loginIllustration: require('../assets/login-illustration.png'),
+  faqIllustration: require('../assets/faq-illustration.png'),
+  serviceIllustration: require('../assets/service-illustration.png'),
 };
 
 const Banner = (props: IProps) => {
@@ -44,7 +44,7 @@ const Banner = (props: IProps) => {
     <Container>
       {props.showLogo ? (
         <Logo
-          source={require('../src/assets/images/logo-mercado-delivery.png')}
+          source={require('../assets/logo-mercado-delivery.png')}
         />
       ) : (
         <ContentContainer>

@@ -25,9 +25,9 @@ interface IProps {
 }
 
 const images: any = {
-  panqueca: require('../assets/images/panqueca.jpg'),
-  saladaFrutas: require('../assets/images/salada-frutas.jpg'),
-  sopaAbobora: require('../assets/images/sopa-abobora.jpg'),
+  panqueca: require('../src/assets/images/panqueca.jpg'),
+  saladaFrutas: require('../src/assets/images/salada-frutas.jpg'),
+  sopaAbobora: require('../src/assets/images/sopa-abobora.jpg'),
 };
 
 const HorizontalProducts = (props: IProps) => {

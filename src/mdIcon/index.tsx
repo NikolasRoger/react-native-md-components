@@ -7,8 +7,8 @@ interface IProps {
 }
 
 const images: any = {
-  couponIcon: require('../assets/images/coupon.png'),
-  pencilIcon: require('../assets/images/pencil.png'),
+  couponIcon: require('../src/assets/images/coupon.png'),
+  pencilIcon: require('../src/assets/images/pencil.png'),
 };
 
 const MdIcon = (props: IProps) => {

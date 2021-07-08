@@ -20,11 +20,15 @@ const BottomTabBar = ({
   function IconComponent({ name, size, ...rest }: any) {
     switch (name.split("-")[0]) {
       case "fa":
-        return <IconFontAwesome size={32} name={name.replace("fa-", "")} {...rest} />;
+        return (
+          <IconFontAwesome size={32} name={name.replace("fa-", "")} {...rest} />
+        );
       case "md":
-        return <IconMaterial size={36} name={name.replace("md-", "")} {...rest} />;
+        return (
+          <IconMaterial size={36} name={name.replace("md-", "")} {...rest} />
+        );
       default:
-        return <Icon size={36} {...rest} />;
+        return <Icon size={36} name={name} {...rest} />;
     }
   }
 

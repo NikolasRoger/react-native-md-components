@@ -4,6 +4,7 @@ import Fonts from '../config/fonts';
 
 type TContentContainerProps = {
   m?: string
+  pl?: string
 }
 
 export const Container = styled.View`
@@ -23,7 +24,7 @@ export const IconContainer = styled.TouchableOpacity`
 `
 
 export const ContentContainer = styled.View<TContentContainerProps>`
-  padding-left: 70px;
+  padding-left: ${(props) => props.pl || '70px'};
   flex-direction: column;
   flex: 1;
   margin-bottom: ${(props) => props.m || '0px'};

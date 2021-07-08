@@ -1,10 +1,15 @@
-import type {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import React from 'react';
-import {Container, Dot, TabContainer} from './styles';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Colors from '../config/colors';
+import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import React from "react";
+import { Container, Dot, TabContainer } from "./styles";
+import Icon from "react-native-vector-icons/Ionicons";
+import IconFontAwesome from "react-native-vector-icons/FontAwesome5";
+import Colors from "../config/colors";
 
-const BottomTabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
+const BottomTabBar = ({
+  state,
+  descriptors,
+  navigation,
+}: BottomTabBarProps) => {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
 
   if (focusedOptions.tabBarVisible === false) {
@@ -14,7 +19,7 @@ const BottomTabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
   return (
     <Container
       style={{
-        shadowColor: '#000',
+        shadowColor: "#000",
         shadowOffset: {
           width: 0,
           height: -5,
@@ -22,9 +27,10 @@ const BottomTabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
         shadowOpacity: 0.25,
         shadowRadius: 20,
         elevation: 10,
-      }}>
+      }}
+    >
       {state.routes.map((route, index) => {
-        const {options} = descriptors[route.key];
+        const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
@@ -36,7 +42,7 @@ const BottomTabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
 
         const onPress = () => {
           const event = navigation.emit({
-            type: 'tabPress',
+            type: "tabPress",
             target: route.key,
             canPreventDefault: true,
           });
@@ -48,7 +54,7 @@ const BottomTabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
 
         const onLongPress = () => {
           navigation.emit({
-            type: 'tabLongPress',
+            type: "tabLongPress",
             target: route.key,
           });
         };
@@ -57,18 +63,29 @@ const BottomTabBar = ({state, descriptors, navigation}: BottomTabBarProps) => {
           <TabContainer
             key={index}
             accessibilityRole="button"
-            accessibilityState={isFocused ? {selected: true} : {}}
+            accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
-            onLongPress={onLongPress}>
-            <Icon
-              name={label as string}
-              size={36}
-              color={isFocused ? Colors['primary'] : Colors['notActive']}
-            />
+            onLongPress={onLongPress}
+          >
+            {
+              String(label).includes("fa-") ? (
+                <IconFontAwesome
+                  name={String(label).replace("fa-", "")}
+                  size={36}
+                  color={isFocused ? Colors["primary"] : Colors["notActive"]}
+                />
+              ) : (
+                <Icon
+                  name={label as string}
+                  size={36}
+                  color={isFocused ? Colors["primary"] : Colors["notActive"]}
+                />
+              )
+            }
             {isFocused && (
-              <Dot width="5px" height="5px" color={Colors['primary']} />
+              <Dot width="5px" height="5px" color={Colors["primary"]} />
             )}
           </TabContainer>
         );

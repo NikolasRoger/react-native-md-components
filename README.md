@@ -10,12 +10,8 @@ npm install react-native-md-components
 
 ## Usage
 
-```js
-import MdComponents from "react-native-md-components";
-
-// ...
-
-const result = await MdComponents.multiply(3, 7);
+```
+em construção
 ```
 
 ## Contributing

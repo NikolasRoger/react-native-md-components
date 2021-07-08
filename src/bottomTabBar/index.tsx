@@ -3,6 +3,7 @@ import React from "react";
 import { Container, Dot, TabContainer } from "./styles";
 import Icon from "react-native-vector-icons/Ionicons";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome5";
+import IconMaterial from "react-native-vector-icons/MaterialIcons";
 import Colors from "../config/colors";
 
 const BottomTabBar = ({
@@ -14,6 +15,17 @@ const BottomTabBar = ({
 
   if (focusedOptions.tabBarVisible === false) {
     return null;
+  }
+
+  function IconComponent({ name, size, ...rest }: any) {
+    switch (name.split("-")[0]) {
+      case "fa":
+        return <IconFontAwesome size={32} name={name.replace("fa-", "")} {...rest} />;
+      case "md":
+        return <IconMaterial size={36} name={name.replace("md-", "")} {...rest} />;
+      default:
+        return <Icon size={36} {...rest} />;
+    }
   }
 
   return (
@@ -69,19 +81,10 @@ const BottomTabBar = ({
             onPress={onPress}
             onLongPress={onLongPress}
           >
-            {String(label).includes("fa-") ? (
-              <IconFontAwesome
-                name={String(label).replace("fa-", "")}
-                size={34}
-                color={isFocused ? Colors["primary"] : Colors["notActive"]}
-              />
-            ) : (
-              <Icon
-                name={label as string}
-                size={36}
-                color={isFocused ? Colors["primary"] : Colors["notActive"]}
-              />
-            )}
+            <IconComponent
+              name={String(label)}
+              color={isFocused ? Colors["primary"] : Colors["notActive"]}
+            />
             {isFocused && (
               <Dot width="5px" height="5px" color={Colors["primary"]} />
             )}

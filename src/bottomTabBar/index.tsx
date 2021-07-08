@@ -69,21 +69,19 @@ const BottomTabBar = ({
             onPress={onPress}
             onLongPress={onLongPress}
           >
-            {
-              String(label).includes("fa-") ? (
-                <IconFontAwesome
-                  name={String(label).replace("fa-", "")}
-                  size={36}
-                  color={isFocused ? Colors["primary"] : Colors["notActive"]}
-                />
-              ) : (
-                <Icon
-                  name={label as string}
-                  size={36}
-                  color={isFocused ? Colors["primary"] : Colors["notActive"]}
-                />
-              )
-            }
+            {String(label).includes("fa-") ? (
+              <IconFontAwesome
+                name={String(label).replace("fa-", "")}
+                size={34}
+                color={isFocused ? Colors["primary"] : Colors["notActive"]}
+              />
+            ) : (
+              <Icon
+                name={label as string}
+                size={36}
+                color={isFocused ? Colors["primary"] : Colors["notActive"]}
+              />
+            )}
             {isFocused && (
               <Dot width="5px" height="5px" color={Colors["primary"]} />
             )}

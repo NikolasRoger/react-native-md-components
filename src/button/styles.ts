@@ -4,7 +4,9 @@ import Fonts from '../config/fonts';
 
 type TButtonProps = {
     type: TColors,
-    m?: string
+    m?: string,
+    borderWidth?: string
+    borderColor?: string
 }
 
 type TTitleProps = {
@@ -20,6 +22,8 @@ export const Container = styled.TouchableOpacity<TButtonProps>`
     justify-content: center;
     align-items: center;
     margin: ${(props) => props.m || "0px"};
+    border-width: ${(props) => props.borderWidth || '0px'};
+    border-color: ${(props) => props.borderColor || Colors['clear']};
 `
 
 export const Title = styled.Text<TTitleProps>`

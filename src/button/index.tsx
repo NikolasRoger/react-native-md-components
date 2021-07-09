@@ -1,6 +1,6 @@
-import React from 'react';
-import type {TColors} from '../config/colors';
-import {Container, Title} from './styles';
+import React from "react";
+import type { TColors } from "../config/colors";
+import { Container, Title } from "./styles";
 
 interface IProps {
   type: TColors;
@@ -8,16 +8,20 @@ interface IProps {
   m?: string;
   onPress?(): any;
   title: string;
+  borderWidth?: string;
+  borderColor?: string;
 }
 
 const Button = (props: IProps) => {
   return (
     <Container
+      borderColor={props.borderColor}
+      borderWidth={props.borderWidth}
       onPress={props.onPress}
       m={props.m}
       type={props.type}
       style={{
-        shadowColor: '#000',
+        shadowColor: "#000",
         shadowOffset: {
           width: 0,
           height: 2,
@@ -26,8 +30,9 @@ const Button = (props: IProps) => {
         shadowRadius: 3.84,
 
         elevation: 5,
-      }}>
-      <Title titleColor={props.titleColor || 'white'}>
+      }}
+    >
+      <Title titleColor={props.titleColor || "white"}>
         {props.title.toUpperCase()}
       </Title>
     </Container>

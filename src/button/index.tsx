@@ -9,17 +9,17 @@ interface IProps {
   onPress?(): any;
   title: string;
   borderWidth?: string;
-  borderColor?: string;
+  borderColor?: TColors;
 }
 
 const Button = (props: IProps) => {
   return (
     <Container
-      borderColor={props.borderColor}
-      borderWidth={props.borderWidth}
       onPress={props.onPress}
       m={props.m}
       type={props.type}
+      borderWidth={props.borderWidth}
+      borderColor={props.borderColor || "clear"}
       style={{
         shadowColor: "#000",
         shadowOffset: {

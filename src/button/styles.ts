@@ -6,7 +6,7 @@ type TButtonProps = {
     type: TColors,
     m?: string,
     borderWidth?: string
-    borderColor?: string
+    borderColor?: TColors
 }
 
 type TTitleProps = {
@@ -17,13 +17,12 @@ export const Container = styled.TouchableOpacity<TButtonProps>`
     background-color: ${(props) => Colors[props.type]} ;
     height: 50px;
     width: 100%;
-    flex: 1;
     border-radius: 10px;
     justify-content: center;
     align-items: center;
     margin: ${(props) => props.m || "0px"};
     border-width: ${(props) => props.borderWidth || '0px'};
-    border-color: ${(props) => props.borderColor || Colors['clear']};
+    border-color: ${(props) => props.borderColor ? Colors[props.borderColor] : Colors['clear']};
 `
 
 export const Title = styled.Text<TTitleProps>`

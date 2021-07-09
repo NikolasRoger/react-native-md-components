@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Photo,
   Container,
@@ -8,17 +8,18 @@ import {
   EstablishmentName,
   StarsQuantity,
   EstablishmentServices,
-} from './styles';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {Dot} from '../bottomTabBar/styles';
-import {useNavigation} from '@react-navigation/native';
-import type {StackNavigationProp} from '@react-navigation/stack';
+} from "./styles";
+import Icon from "react-native-vector-icons/Ionicons";
+import { Dot } from "../bottomTabBar/styles";
+import { useNavigation } from "@react-navigation/native";
+import type { StackNavigationProp } from "@react-navigation/stack";
 
 interface IItem {
   content: string;
 }
 
 interface IProps {
+  displayBackIcon?: boolean;
   establishmentName: string;
   starsQuantity: number;
   items: IItem[];
@@ -28,9 +29,11 @@ const HeaderPhoto = (props: IProps) => {
   const navigation = useNavigation<StackNavigationProp<any>>();
   return (
     <Container>
-      <IconContainer onPress={() => navigation.pop()}>
-        <Icon name="arrow-back-outline" color="white" size={36} />
-      </IconContainer>
+      {!props.displayBackIcon && (
+        <IconContainer onPress={() => navigation.pop()}>
+          <Icon name="arrow-back-outline" color="white" size={36} />
+        </IconContainer>
+      )}
       <InfoContainer>
         <InfoRow>
           <EstablishmentName>
@@ -52,12 +55,12 @@ const HeaderPhoto = (props: IProps) => {
         </InfoRow>
       </InfoContainer>
       <Photo
-        source={require('../assets/lessy-modas.jpg')}
-        style={{tintColor: 'black'}}
+        source={require("../assets/lessy-modas.jpg")}
+        style={{ tintColor: "black" }}
       />
       <Photo
-        source={require('../assets/lessy-modas.jpg')}
-        style={{opacity: 0.5}}
+        source={require("../assets/lessy-modas.jpg")}
+        style={{ opacity: 0.5 }}
       />
     </Container>
   );

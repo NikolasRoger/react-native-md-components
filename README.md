@@ -1,22 +1,34 @@
 # react-native-md-components
 
-Components for mercado delivery group
 
-## Installation
+[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://GitHub.com/NikolasRoger/react-native-md-components/releases/)
 
-```sh
+Componentes para o Mercado Delivery Group.
+
+## Instalação
+
+```
 npm install react-native-md-components
 ```
 
-## Usage
+### Dependências
 
-```
-em construção
-```
+O projeto utiliza as seguintes dependências:
 
-## Contributing
+[React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+As seguintes bibliotecas de ícones são utilizadas:
+
+* Ionicons (sempre utilizando as versões "ios-")
+* FontAwesome5
+* MaterialIcons
+
+## Troubleshooting
+
+Em casos de atualizações onde o componente não mude seu comportamento após atualizar, é necessário: 
+
+* Realizar alguma alteração em um componente na pasta ```npm``` e salvar
+* Reverter a atualização e salvar novamente
 
 ## License
 

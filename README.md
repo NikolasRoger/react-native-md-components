@@ -1,7 +1,6 @@
 # react-native-md-components
 
-
-[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://GitHub.com/NikolasRoger/react-native-md-components/releases/)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/NikolasRoger/react-native-md-components?style=social)
 
 Componentes para o Mercado Delivery Group.
 

@@ -54,8 +54,10 @@ interface IProps {
 }
 
 const images: any = {
-  sendIllustration: require("../assets/login-illustration.png"),
   clockIllustration: require("../assets/clock-illustration.png"),
+  confirmIllustration: require("../assets/confirm-illustration.png"),
+  boxIllustration: require("../assets/box-illustration.png"),
+  sendIllustration: require("../assets/login-illustration.png"),
 };
 
 const Info = (props: IProps) => {
@@ -63,12 +65,12 @@ const Info = (props: IProps) => {
     <>
       {props.items.map((item, index) => (
         <MainContainer
+          key={index}
           onPress={props.onPress}
           mb={item.showEditButton && item.badgeBg ? "15px" : undefined}
         >
           <Container
             m={item.m}
-            key={index}
             style={{
               shadowColor: "#000",
               shadowOffset: {

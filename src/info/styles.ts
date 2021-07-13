@@ -15,6 +15,14 @@ type TMainContainerProps = {
   mb?: string
 }
 
+type TTagContainerProps = {
+  tagBg?: TColors
+}
+
+type TTagContentProps = {
+  tagTextColor?: TColors
+}
+
 export const MainContainer = styled.TouchableOpacity<TMainContainerProps>`
   margin-bottom: ${(props) => props.mb || '0px'};
 `
@@ -65,10 +73,16 @@ export const InfoTitle = styled.Text`
   color: ${Colors['titles']};
 `
 
+export const InfoContentContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`
+
 export const InfoContent = styled.Text`
   font-family: ${Fonts.primarySemiBold};
   font-size: 15px;
   color: ${Colors['text']};
+  flex-shrink: 1;
 `
 
 export const InfoContainer  = styled.View`
@@ -115,3 +129,18 @@ export const EditIconContainer = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `
+
+export const TagContainer = styled.View<TTagContainerProps>`
+  padding: 2px 10px;
+  background-color: ${(props) => props.tagBg && Colors[props.tagBg] || Colors['clear']};
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+`
+
+export const TagContent = styled.Text<TTagContentProps>`
+  font-family: ${Fonts.primary};
+  font-weight: 400;
+  font-size: 14px;
+  color: ${(props) => props.tagTextColor && Colors[props.tagTextColor] || Colors['clear']};
+  `

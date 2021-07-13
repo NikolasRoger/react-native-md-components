@@ -1,5 +1,5 @@
-import React from 'react';
-import Colors, {TColors} from '../config/colors';
+import React from "react";
+import Colors, { TColors } from "../config/colors";
 import {
   Container,
   StatusRow,
@@ -15,13 +15,19 @@ import {
   BadgeContent,
   MainContainer,
   EditIconContainer,
-} from './styles';
-import {MdIcon} from '../index';
-import {Dot} from '../bottomTabBar/styles';
+  TagContainer,
+  InfoContentContainer,
+  TagContent,
+} from "./styles";
+import { MdIcon } from "../index";
+import { Dot } from "../bottomTabBar/styles";
 
 interface IInfos {
   infoTitle: string;
   infoContent?: string;
+  infoBadgeBg?: TColors;
+  infoBadgeContent?: string;
+  infoBadgeContentColor?: TColors;
 }
 
 interface ICards {
@@ -44,11 +50,12 @@ interface IItems {
 
 interface IProps {
   items: IItems[];
+  onPress?(): any;
 }
 
 const images: any = {
-  sendIllustration: require('../assets/login-illustration.png'),
-  clockIllustration: require('../assets/clock-illustration.png'),
+  sendIllustration: require("../assets/login-illustration.png"),
+  clockIllustration: require("../assets/clock-illustration.png"),
 };
 
 const Info = (props: IProps) => {
@@ -56,12 +63,14 @@ const Info = (props: IProps) => {
     <>
       {props.items.map((item, index) => (
         <MainContainer
-          mb={item.showEditButton && item.badgeBg ? '15px' : undefined}>
+          onPress={props.onPress}
+          mb={item.showEditButton && item.badgeBg ? "15px" : undefined}
+        >
           <Container
             m={item.m}
             key={index}
             style={{
-              shadowColor: '#000',
+              shadowColor: "#000",
               shadowOffset: {
                 width: 0,
                 height: 2,
@@ -70,7 +79,8 @@ const Info = (props: IProps) => {
               shadowRadius: 3.84,
 
               elevation: 5,
-            }}>
+            }}
+          >
             {item.image && (
               <StatusRow>
                 <IllustrationContainer>
@@ -84,11 +94,28 @@ const Info = (props: IProps) => {
             {item.infos &&
               item.infos.map((info, index) => (
                 <InfoContainer key={index}>
-                  <InfoTitle>
-                    {info.infoTitle}
-                    {info.infoContent ? ':' : ''}{' '}
-                    <InfoContent>{info.infoContent}</InfoContent>
-                  </InfoTitle>
+                  <InfoContentContainer>
+                    <InfoTitle>
+                      {info.infoTitle}
+                      {info.infoContent ? ":" : ""}{" "}
+                      <InfoContent>{info.infoContent}</InfoContent>
+                    </InfoTitle>
+                    {info.infoBadgeBg && info.infoBadgeContent && (
+                      <>
+                        <Dot
+                          width="4px"
+                          height="4px"
+                          color={Colors["titles"]}
+                          m="0 5px"
+                        />
+                        <TagContainer tagBg={info.infoBadgeBg}>
+                          <TagContent tagTextColor={info.infoBadgeContentColor}>
+                            {info.infoBadgeContent}
+                          </TagContent>
+                        </TagContainer>
+                      </>
+                    )}
+                  </InfoContentContainer>
                 </InfoContainer>
               ))}
             {item.cards &&
@@ -99,7 +126,7 @@ const Info = (props: IProps) => {
                     <Dot
                       width="4px"
                       height="4px"
-                      color={Colors['titles']}
+                      color={Colors["titles"]}
                       m="0 5px"
                     />
                     <InfoTitle>{card.cardSubtitle}</InfoTitle>
@@ -113,15 +140,16 @@ const Info = (props: IProps) => {
           </Container>
           {item.badgeBg && (
             <BadgeContainer
-              bottom={item.showEditButton && item.badgeBg ? '0' : '8'}
-              bg={item.badgeBg}>
+              bottom={item.showEditButton && item.badgeBg ? "0" : "8"}
+              bg={item.badgeBg}
+            >
               <BadgeContent>{item.badgeContent}</BadgeContent>
             </BadgeContainer>
           )}
           {item.showEditButton && (
             <EditIconContainer
               style={{
-                shadowColor: '#000',
+                shadowColor: "#000",
                 shadowOffset: {
                   width: 0,
                   height: 3,
@@ -130,7 +158,8 @@ const Info = (props: IProps) => {
                 shadowRadius: 4.65,
 
                 elevation: 6,
-              }}>
+              }}
+            >
               <MdIcon size="16px" image="pencilIcon" />
             </EditIconContainer>
           )}

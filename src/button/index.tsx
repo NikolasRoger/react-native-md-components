@@ -19,6 +19,8 @@ const Button = (props: IProps) => {
     <Container
       onPress={props.onPress}
       m={props.m}
+      mr={props.mr}
+      ml={props.ml}
       type={props.type}
       borderWidth={props.borderWidth}
       borderColor={props.borderColor || "clear"}

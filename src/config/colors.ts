@@ -1,4 +1,4 @@
-export type TColors = "primary" | "secondary" | "danger" | "confirm" | "bg" | "label" | "disabled" | "titles" | "warning" | "clear" | "white" | "notActive" | "inputItens" | "secondaryTitle" | "text" | "confirmText"
+export type TColors = "primary" | "secondary" | "danger" | "confirm" | "bg" | "label" | "disabled" | "titles" | "warning" | "clear" | "white" | "notActive" | "inputItens" | "secondaryTitle" | "text" | "confirmText" | "beeDelivery"
 
 const Colors = {
     primary: "#0062AD",
@@ -17,6 +17,7 @@ const Colors = {
     notActive: "#D8D3D3",
     inputItens: "#C7C7C7",
     confirmText: "#4A883A",
+    beeDelivery: '#FFDD00',
 }
 
 export default Colors

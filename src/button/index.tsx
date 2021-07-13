@@ -6,6 +6,8 @@ interface IProps {
   type: TColors;
   titleColor?: TColors;
   m?: string;
+  ml?: string;
+  mr?: string;
   onPress?(): any;
   title: string;
   borderWidth?: string;

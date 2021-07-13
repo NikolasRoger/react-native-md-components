@@ -1,6 +1,6 @@
 {
   "name": "react-native-md-components",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Components for mercado delivery group",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

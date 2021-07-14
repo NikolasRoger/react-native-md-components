@@ -17,7 +17,7 @@ type TTitleProps = {
 
 export const Container = styled.TouchableOpacity<TButtonProps>`
     background-color: ${(props) => Colors[props.type]} ;
-    height: 50px;
+    max-height: 50px;
     width: 100%;
     flex: 1;
     border-radius: 10px;

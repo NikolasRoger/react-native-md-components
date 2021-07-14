@@ -29,6 +29,7 @@ interface IProps {
   items: IItems[];
   mt?: string;
   disabled?: boolean;
+  onPress?(): any;
 }
 
 const images: any = {
@@ -43,7 +44,11 @@ const ProductList = (props: IProps) => {
   return (
     <Container mt={props.mt}>
       {props.items.map((item, index) => (
-        <ItemContainer key={index} disabled={props.disabled}>
+        <ItemContainer
+          key={index}
+          disabled={props.disabled}
+          onPress={props.onPress}
+        >
           <ImageContainer
             style={{
               shadowColor: "#000",

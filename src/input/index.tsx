@@ -1,8 +1,9 @@
 import React from 'react';
+import type { TextInputProps } from 'react-native';
 import type {TColors} from '../config/colors';
 import {StyledInput, Label, Container} from './styles';
 
-interface IProps {
+interface IProps extends TextInputProps {
   type: TColors;
   textColor: TColors;
   label?: string;
@@ -10,13 +11,13 @@ interface IProps {
   m?: string;
 }
 
-const Input = (props: IProps) => {
+const Input = ({m, label, textColor, type, ...rest}: IProps) => {
   return (
-    <Container m={props.m}>
-      {props.label && <Label textColor={props.textColor}>{props.label}</Label>}
+    <Container m={m}>
+      {label && <Label textColor={textColor}>{label}</Label>}
       <StyledInput
-        type={props.type}
-        placeholder={props.placeholder}></StyledInput>
+        type={type}
+        {...rest}></StyledInput>
     </Container>
   );
 };

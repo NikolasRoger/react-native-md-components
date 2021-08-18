@@ -1,7 +1,7 @@
 import React from 'react';
 import type { TextInput, TextInputProps } from 'react-native';
 import type {TColors} from '../config/colors';
-import {StyledInput, Label, Container} from './styles';
+import {StyledInput, Label, Container, ErrText} from './styles';
 
 interface IProps extends TextInputProps {
   type: TColors;
@@ -19,6 +19,7 @@ const Input = React.forwardRef(({m, label, textColor, type, ...rest}: IProps, re
         type={type}
         ref={ref}
         {...rest}></StyledInput>
+      <ErrText>Testando error</ErrText>
     </Container>
   );
 });

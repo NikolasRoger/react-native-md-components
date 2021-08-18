@@ -36,3 +36,8 @@ export const Label = styled.Text<TLabelProps>`
   margin-bottom: 10px;
   font-family: ${Fonts.primary};
 `;
+
+export const ErrText = styled.Text`
+  color: ${Colors.danger};
+  margin-top: 5px;
+`

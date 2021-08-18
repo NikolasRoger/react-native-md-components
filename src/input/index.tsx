@@ -9,9 +9,10 @@ interface IProps extends TextInputProps {
   label?: string;
   placeholder?: string;
   m?: string;
+  error?: string | null;
 }
 
-const Input = React.forwardRef(({m, label, textColor, type, ...rest}: IProps, ref?: React.Ref<TextInput>) => {
+const Input = React.forwardRef(({m, label, textColor, error, type, ...rest}: IProps, ref?: React.Ref<TextInput>) => {
   return (
     <Container m={m}>
       {label && <Label textColor={textColor}>{label}</Label>}
@@ -19,7 +20,7 @@ const Input = React.forwardRef(({m, label, textColor, type, ...rest}: IProps, re
         type={type}
         ref={ref}
         {...rest}></StyledInput>
-      <ErrText>Testando error</ErrText>
+      {error && <ErrText>{error}</ErrText>}
     </Container>
   );
 });

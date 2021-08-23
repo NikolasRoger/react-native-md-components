@@ -148,7 +148,7 @@ const Info = (props: IProps) => {
           </Container>
           {item.badgeBg && (
             <BadgeContainer
-              bottom={item.showEditButton && item.badgeBg ? "0" : "8"}
+              bottom={item.badgeBg ? "0" : "8"}
               bg={item.badgeBg}
             >
               <BadgeContent>{item.badgeContent}</BadgeContent>

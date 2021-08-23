@@ -18,9 +18,11 @@ import {
   TagContainer,
   InfoContentContainer,
   TagContent,
+  RowButtons,
 } from "./styles";
 import { MdIcon } from "../index";
 import { Dot } from "../bottomTabBar/styles";
+import Icon from "react-native-vector-icons/Ionicons";
 
 interface IInfos {
   infoTitle: string;
@@ -52,6 +54,7 @@ interface IItems {
 interface IProps {
   items: IItems[];
   onPress?(selectedItem: any): any;
+  onPressDelete?(selectedItem: any): any;
 }
 
 const images: any = {
@@ -151,6 +154,7 @@ const Info = (props: IProps) => {
               <BadgeContent>{item.badgeContent}</BadgeContent>
             </BadgeContainer>
           )}
+          <RowButtons>
           {item.showEditButton && (
             <EditIconContainer
               style={{
@@ -168,6 +172,29 @@ const Info = (props: IProps) => {
               <MdIcon size="16px" image="pencilIcon" />
             </EditIconContainer>
           )}
+          {
+            props.onPressDelete && (
+                <EditIconContainer
+                  style={{
+                    shadowColor: "#000",
+                    shadowOffset: {
+                      width: 0,
+                      height: 3,
+                    },
+                    shadowOpacity: 0.27,
+                    shadowRadius: 4.65,
+
+                    elevation: 6,
+                  }}
+                  onPress={() => {
+                    if (props.onPressDelete) props.onPressDelete(item.infoData)
+                  }}
+                >
+                  <Icon size={25} name="ios-trash-outline" color={Colors.danger} />
+                </EditIconContainer>
+            )
+          }
+          </RowButtons>
         </MainContainer>
       ))}
     </>

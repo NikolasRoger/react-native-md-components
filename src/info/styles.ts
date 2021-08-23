@@ -118,16 +118,24 @@ export const BadgeContent = styled.Text`
   color: ${Colors['titles']};
 `
 
+export const RowButtons = styled.View`
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  flex-direction: row;
+  align-self: flex-end;
+  justify-content: flex-end;
+  align-items: flex-start;
+`
+
 export const EditIconContainer = styled.TouchableOpacity`
   width: 36px;
   height: 36px;
   background-color: white;
   border-radius: 50px;
-  position: absolute;
-  align-self: flex-end;
-
   justify-content: center;
   align-items: center;
+  margin-left: 10px;
 `
 
 export const TagContainer = styled.View<TTagContainerProps>`

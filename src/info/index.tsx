@@ -46,11 +46,12 @@ interface IItems {
   m?: string;
   showEditButton?: boolean;
   showIndicator?: boolean;
+  infoData?: any;
 }
 
 interface IProps {
   items: IItems[];
-  onPress?(): any;
+  onPress?(selectedItem: any): any;
 }
 
 const images: any = {
@@ -66,7 +67,9 @@ const Info = (props: IProps) => {
       {props.items.map((item, index) => (
         <MainContainer
           key={index}
-          onPress={props.onPress}
+          onPress={() => {
+            if(props.onPress) props.onPress(item.infoData)
+          }}
           mb={item.showEditButton && item.badgeBg ? "15px" : undefined}
         >
           <Container

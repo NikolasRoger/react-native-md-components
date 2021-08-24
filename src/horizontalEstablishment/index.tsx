@@ -16,9 +16,9 @@ import {
 interface IItem {
   title: string;
   image: string;
-  starCount: number;
-  time: string;
-  value: string;
+  starCount?: number;
+  time?: string;
+  value?: string;
   infoData?: any;
 }
 

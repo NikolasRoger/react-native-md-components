@@ -23,14 +23,14 @@ interface IItems {
 interface IProps {
   items: IItems[];
   mb?: string;
-  onSelect(selectedValue: any): void
+  onSelect?(selectedValue: any): void
 }
 
 const Checkbox = (props: IProps) => {
   return (
     <>
       {props.items.map((item, index) => (
-        <Container key={index} mb={props.mb} onPress={() => props.onSelect(item.infoData)}>
+        <Container key={index} mb={props.mb} onPress={() => props.onSelect && props.onSelect(item.infoData)}>
           <InfosContainer>
             <TitleContainer>
               <Text>{item.title}</Text>

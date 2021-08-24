@@ -12,8 +12,6 @@ import {
   Info,
   DotSeparator,
 } from './styles';
-import {useNavigation} from '@react-navigation/native';
-import type {StackNavigationProp} from '@react-navigation/stack';
 
 interface IItem {
   title: string;
@@ -21,23 +19,15 @@ interface IItem {
   starCount: number;
   time: string;
   value: string;
+  infoData?: any;
 }
 
 interface IProps {
-  title: string;
   items: IItem[];
+  onPress?(selectedValue: any): void;
 }
 
-const images: any = {
-  espacoCafeBistro: require('../assets/espaco-cafe-bistro.jpg'),
-  barBoemia: require('../assets/bar-boemia.jpg'),
-  lessyModas: require('../assets/lessy-modas.jpg'),
-};
-
 const HorizontalEstablishment = (props: IProps) => {
-  const navigation =
-    useNavigation<StackNavigationProp<any, 'HomeTabs'>>();
-
   return (
     <ScrollView
       horizontal
@@ -52,7 +42,7 @@ const HorizontalEstablishment = (props: IProps) => {
       {props.items.map((item, index) => (
         <Container
           mr="20px"
-          onPress={() => navigation.push('Establishment')}
+          onPress={() => props.onPress && props.onPress(item.infoData)}
           key={index}>
           <EstablishmentImageContainer
             m="10px"
@@ -67,38 +57,52 @@ const HorizontalEstablishment = (props: IProps) => {
 
               elevation: 4,
             }}>
-            <EstablishmentImage source={images[item.image]} />
+            <EstablishmentImage source={{ uri: item.image }} />
           </EstablishmentImageContainer>
           <Name textColor={Colors['titles']}>{item.title}</Name>
-          <InfoContainer mt="5px" dataColor={Colors['secondaryTitle']}>
-            <DataContainer>
-              <Icon
-                name={'ios-star-outline'}
-                color={Colors['secondaryTitle']}
-                size={16}
-                style={{
-                  marginRight: 5,
-                }}
-              />
-              <Info mr="10px">{item.starCount}</Info>
-              <DotSeparator />
-            </DataContainer>
-            <DataContainer>
-              <Icon
-                name={'ios-time-outline'}
-                color={Colors['secondaryTitle']}
-                size={17}
-                style={{
-                  marginRight: 5,
-                }}
-              />
-              <Info mr="10px">{item.time}</Info>
-              <DotSeparator />
-            </DataContainer>
-            <DataContainer>
-              <Info mr="10px">{item.value}</Info>
-            </DataContainer>
-          </InfoContainer>
+          {
+            item.starCount || item.time || item.value && (
+              <InfoContainer mt="5px" dataColor={Colors['secondaryTitle']}>
+                {item.starCount && (
+                  <DataContainer>
+                    <Icon
+                      name={'ios-star-outline'}
+                      color={Colors['secondaryTitle']}
+                      size={16}
+                      style={{
+                        marginRight: 5,
+                      }}
+                    />
+                    <Info mr="10px">{item.starCount}</Info>
+                    <DotSeparator />
+                  </DataContainer>
+                )}
+                {
+                  item.time && (
+                    <DataContainer>
+                      <Icon
+                        name={'ios-time-outline'}
+                        color={Colors['secondaryTitle']}
+                        size={17}
+                        style={{
+                          marginRight: 5,
+                        }}
+                      />
+                      <Info mr="10px">{item.time}</Info>
+                      <DotSeparator />
+                    </DataContainer>
+                  )
+                }
+                {
+                  item.value && (
+                    <DataContainer>
+                      <Info mr="10px">{item.value}</Info>
+                    </DataContainer>
+                  )
+                }
+              </InfoContainer>
+            )
+          }
         </Container>
       ))}
     </ScrollView>

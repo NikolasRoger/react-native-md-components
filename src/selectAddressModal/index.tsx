@@ -1,21 +1,19 @@
 import React from 'react';
 import {Checkbox, MdBottomModal} from '..';
 
-const SelectAddressModal = () => {
+interface IProps {
+  modalTitle?: string
+  onSelect(selectedValue: any): void
+  data: any
+}
+
+const SelectAddressModal = (props: IProps) => {
   return (
-    <MdBottomModal modalTitle="Selecionar endereço">
+    <MdBottomModal modalTitle={props.modalTitle || "Selecionar endereço"}>
       <Checkbox
         mb="20px"
-        items={[
-          {
-            title:
-              'R. Cícero Marques de Souza, 3315 - Novo Horizonte, Macapá - AP',
-          },
-          {
-            title:
-              'R. Cícero Marques de Souza, 3315 - Novo Horizonte, Macapá - AP',
-          },
-        ]}
+        items={props.data}
+        onSelect={props.onSelect}
       />
     </MdBottomModal>
   );

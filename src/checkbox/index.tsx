@@ -17,18 +17,20 @@ interface IItems {
   content?: string;
   cardNumber?: string;
   checked?: boolean;
+  infoData?: any;
 }
 
 interface IProps {
   items: IItems[];
   mb?: string;
+  onSelect(selectedValue: any): void
 }
 
 const Checkbox = (props: IProps) => {
   return (
     <>
       {props.items.map((item, index) => (
-        <Container key={index} mb={props.mb}>
+        <Container key={index} mb={props.mb} onPress={() => props.onSelect(item.infoData)}>
           <InfosContainer>
             <TitleContainer>
               <Text>{item.title}</Text>

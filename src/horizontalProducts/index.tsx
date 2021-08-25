@@ -13,22 +13,17 @@ import {
 
 interface IItem {
   title: string;
-  image: string;
-  heartCount: number;
-  time: string;
+  image?: string;
+  heartCount?: number;
   value: string;
   establishment: string;
+  infoData?: any;
 }
 
 interface IProps {
   items: IItem[];
+  onPress?(pressedItem: any): any;
 }
-
-const images: any = {
-  panqueca: require('../assets/panqueca.jpg'),
-  saladaFrutas: require('../assets/salada-frutas.jpg'),
-  sopaAbobora: require('../assets/sopa-abobora.jpg'),
-};
 
 const HorizontalProducts = (props: IProps) => {
   return (
@@ -43,7 +38,7 @@ const HorizontalProducts = (props: IProps) => {
         paddingLeft: 30,
       }}>
       {props.items.map((item, index) => (
-        <Container key={index}>
+        <Container key={index} onPress={() => props.onPress && props.onPress(item.infoData)}>
           <ProductImageContainer
             m="10px"
             style={{
@@ -57,22 +52,26 @@ const HorizontalProducts = (props: IProps) => {
 
               elevation: 4,
             }}>
-            <ProductImage source={images[item.image]} />
+            <ProductImage source={{ uri: item.image }} />
           </ProductImageContainer>
           <Name textColor={Colors['titles']}>{item.title}</Name>
           <InfoContainer mt="5px" dataColor={Colors['secondaryTitle']}>
-            <DataContainer>
-              <Icon
-                name="ios-heart-outline"
-                color={Colors['secondaryTitle']}
-                size={17}
-                style={{
-                  marginRight: 5,
-                }}
-              />
-              <Info mr="10px">{item.heartCount}</Info>
-              <DotSeparator />
-            </DataContainer>
+            {
+              item.heartCount && (
+                <DataContainer>
+                  <Icon
+                    name="ios-heart-outline"
+                    color={Colors['secondaryTitle']}
+                    size={17}
+                    style={{
+                      marginRight: 5,
+                    }}
+                  />
+                  <Info mr="10px">{item.heartCount}</Info>
+                  <DotSeparator />
+                </DataContainer>
+              )
+            }
             <DataContainer>
               <Info mr="10px">{item.value}</Info>
             </DataContainer>

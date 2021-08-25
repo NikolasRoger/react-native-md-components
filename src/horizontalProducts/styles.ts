@@ -4,7 +4,7 @@ type TProductImageContainer = {
   m?: string
 }
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   margin-right: 20px;
   width: 130px;
 `;

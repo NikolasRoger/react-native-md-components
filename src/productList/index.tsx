@@ -59,7 +59,7 @@ const ProductList = (props: IProps) => {
               },
               shadowOpacity: 0.27,
               shadowRadius: 4.65,
-
+              backgroundColor: '#ccc',
               elevation: 6,
             }}
           >
@@ -84,7 +84,7 @@ const ProductList = (props: IProps) => {
                 />
               </LikeContainer>
             )} */}
-            <ProductImage source={images[item.productImage]} />
+            <ProductImage source={{ uri: item.productImage }} />
           </ImageContainer>
           <InfoContainer>
             <ProductText>{item.productName}</ProductText>

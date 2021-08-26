@@ -4,20 +4,18 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {TabContainer, Info} from './styles';
 import Colors from '../config/colors';
 import {Dot} from '../bottomTabBar/styles';
-import {useNavigation} from '@react-navigation/native';
-import type {StackNavigationProp} from '@react-navigation/stack';
 
 interface IProps {
   itemsQuantity: number;
   cartTotal: string;
+  onPress?(): void;
 }
 
 const CartButton = (props: IProps) => {
-  const navigation =
-    useNavigation<StackNavigationProp<any, 'HomeTabs'>>();
+
   return (
     <Container
-      onPress={() => navigation.push('Cart')}
+      onPress={() => props.onPress && props.onPress()}
       style={{
         shadowColor: '#000',
         shadowOffset: {

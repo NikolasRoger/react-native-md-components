@@ -23,13 +23,14 @@ interface IItems {
   productInfo?: string;
   productStock?: string;
   displayIcon?: boolean;
+  infoData?: any;
 }
 
 interface IProps {
   items: IItems[];
   mt?: string;
   disabled?: boolean;
-  onPress?(): any;
+  onPress?(pressedItem: any): any;
 }
 
 const images: any = {
@@ -47,7 +48,7 @@ const ProductList = (props: IProps) => {
         <ItemContainer
           key={index}
           disabled={props.disabled}
-          onPress={props.onPress}
+          onPress={() => props.onPress && props.onPress(item.infoData)}
         >
           <ImageContainer
             style={{
@@ -62,7 +63,7 @@ const ProductList = (props: IProps) => {
               elevation: 6,
             }}
           >
-            {item.productPrice && (
+            {/* {item.productPrice && (
               <LikeContainer
                 style={{
                   shadowColor: "#000",
@@ -82,7 +83,7 @@ const ProductList = (props: IProps) => {
                   size={16}
                 />
               </LikeContainer>
-            )}
+            )} */}
             <ProductImage source={images[item.productImage]} />
           </ImageContainer>
           <InfoContainer>

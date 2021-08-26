@@ -4,11 +4,12 @@ import {ScrollView} from 'react-native';
 
 interface IItem {
   title: string;
-  active?: boolean;
 }
 
 interface IProps {
   items: IItem[];
+  onPress?(index: number): any;
+  active?: number
 }
 
 const TabBar = (props: IProps) => {
@@ -24,7 +25,11 @@ const TabBar = (props: IProps) => {
         paddingLeft: 30,
       }}>
       {props.items.map((item, index) => (
-        <TitleContainer key={index} borderSize={item.active ? '2px' : '0px'}>
+        <TitleContainer 
+          key={index} 
+          borderSize={index === props.active ? '2px' : '0px'}
+          onPress={() => props.onPress && props.onPress(index)}
+        >
           <TabTitle>{item.title}</TabTitle>
         </TitleContainer>
       ))}

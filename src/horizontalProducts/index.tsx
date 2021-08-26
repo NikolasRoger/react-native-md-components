@@ -49,12 +49,12 @@ const HorizontalProducts = (props: IProps) => {
               },
               shadowOpacity: 0.23,
               shadowRadius: 2.62,
-
+              backgroundColor: "white",
               elevation: 4,
             }}>
             <ProductImage source={{ uri: item.image }} />
           </ProductImageContainer>
-          <Name textColor={Colors['titles']}>{item.title}</Name>
+          <Name textColor={Colors['titles']} numberOfLines={3}>{item.title}</Name>
           <InfoContainer mt="5px" dataColor={Colors['secondaryTitle']}>
             {
               item.heartCount && (

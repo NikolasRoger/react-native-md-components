@@ -21,7 +21,7 @@ interface IItem {
 interface IProps {
   displayBackIcon?: boolean;
   establishmentName: string;
-  starsQuantity: number;
+  thumbnail: string;
   items: IItem[];
 }
 
@@ -39,9 +39,9 @@ const HeaderPhoto = (props: IProps) => {
           <EstablishmentName>
             {props.establishmentName.toUpperCase()}
           </EstablishmentName>
-          <Dot color="white" height="5px" width="5px" m="0 5px" />
+{/*        <Dot color="white" height="5px" width="5px" m="0 5px" />
           <Icon name="star" color="#FFD41C" size={16} />
-          <StarsQuantity>{props.starsQuantity}</StarsQuantity>
+          <StarsQuantity>{props.starsQuantity}</StarsQuantity> */}
         </InfoRow>
         <InfoRow>
           {props.items.map((item, index) => (
@@ -55,11 +55,11 @@ const HeaderPhoto = (props: IProps) => {
         </InfoRow>
       </InfoContainer>
       <Photo
-        source={require("../assets/lessy-modas.jpg")}
+        source={{uri: props.thumbnail}}
         style={{ tintColor: "black" }}
       />
       <Photo
-        source={require("../assets/lessy-modas.jpg")}
+        source={{uri: props.thumbnail}}
         style={{ opacity: 0.5 }}
       />
     </Container>

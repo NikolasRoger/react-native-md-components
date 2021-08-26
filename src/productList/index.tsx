@@ -33,14 +33,6 @@ interface IProps {
   onPress?(pressedItem: any): any;
 }
 
-const images: any = {
-  boneFlores: require("../assets/bone-flores.jpg"),
-  camisaInfuse: require("../assets/camisa-infuse.jpg"),
-  vestidoBabado: require("../assets/vestido-babado.jpg"),
-  blusaBeYou: require("../assets/blusa-be-you.jpg"),
-  croppedSimples: require("../assets/cropped-simples.jpg"),
-};
-
 const ProductList = (props: IProps) => {
   return (
     <Container mt={props.mt}>

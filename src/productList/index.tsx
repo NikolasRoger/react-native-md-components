@@ -4,7 +4,7 @@ import {
   ItemContainer,
   ImageContainer,
   ProductImage,
-  LikeContainer,
+/*   LikeContainer, */
   InfoContainer,
   ProductText,
   ArrowIconContainer,

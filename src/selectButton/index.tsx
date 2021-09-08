@@ -7,11 +7,12 @@ import MdIcon from "../mdIcon";
 interface IItems {
   name: string;
   showIcon?: boolean;
+  infoData?: any;
 }
 
 interface IProps {
   items: IItems[];
-  onPress?(): any;
+  onPress?(selectedItem: any): any;
 }
 
 const SelectButton = (props: IProps) => {
@@ -19,7 +20,7 @@ const SelectButton = (props: IProps) => {
     <>
       {props.items.map((item, index) => (
         <Container
-          onPress={props.onPress}
+          onPress={() => props.onPress && props.onPress(item.infoData)}
           key={index}
           style={{
             shadowColor: "#000",

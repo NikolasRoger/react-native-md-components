@@ -85,7 +85,7 @@ const OrderConfirmationModal = (props: IProps) => {
         pedido.
       </WarningText>
       <BtnContainer>
-        <Button type="white" titleColor="titles" title="Cancelar pedido" />
+        <Button type="white" titleColor="titles" title="Cancelar pedido" onPress={props.onRequestClose} />
       </BtnContainer>
     </MdModal>
   );

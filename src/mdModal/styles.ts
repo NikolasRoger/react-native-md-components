@@ -2,12 +2,16 @@ import styled from 'styled-components/native';
 import Colors from '../config/colors';
 import Fonts from '../config/fonts';
 
-export const Container = styled.View`
-  width: 100%;
+export const Container = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    width: '100%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 30,
+    overflow: 'hidden'
+  }
+})`
   max-height: 80%;
-  background-color: white;
-  border-radius: 10px;
-  padding: 30px;
 `;
 
 export const ModalHeaderContainer = styled.View`

@@ -19,6 +19,7 @@ interface IItems {
   alignIllustration: string;
   alignText: string;
   left: string;
+  onPress?(): any
 }
 
 interface IProps {
@@ -36,7 +37,7 @@ const AdvertisingImage = (props: IProps) => {
   return (
     <>
       {props.items.map((item, index) => (
-        <MainContainer key={index}>
+        <MainContainer key={index} onPress={item.onPress}>
           <Container>
             <BgImage source={images[item.bg]}>
               <ItemsContainer align={item.alignText}>

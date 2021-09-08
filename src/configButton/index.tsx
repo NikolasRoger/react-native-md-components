@@ -7,11 +7,13 @@ interface IProps {
   icon?: string;
   title: string;
   RightComponent: any;
+  onPress?(): any;
 }
 
 const ConfigButton = (props: IProps) => {
   return (
     <Container
+      onPress={props.onPress}
       style={{
         shadowColor: "#000",
         shadowOffset: {

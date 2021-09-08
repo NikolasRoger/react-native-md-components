@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import Colors from '../config/colors';
 import Fonts from '../config/fonts';
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   width: 100%;
   height: 50px;
   border-radius: 10px;

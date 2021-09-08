@@ -57,3 +57,8 @@ export const WarningText = styled.Text`
   color: ${Colors.danger};
   margin-bottom: 30px;
 `
+
+export const BtnContainer = styled.View`
+  width: 100%;
+  height: 60px;
+`

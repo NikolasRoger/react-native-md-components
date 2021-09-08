@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   InfoContainer,
   InfoContent,
@@ -8,8 +8,9 @@ import {
   TimeInfo,
   ProgressBar,
   WarningText,
+  BtnContainer,
 } from './styles';
-import {MdModal, Button} from '..';
+import { MdModal, Button } from '..';
 
 interface IInfos {
   infoTitle: string;
@@ -18,12 +19,40 @@ interface IInfos {
 
 interface IProps {
   infos: IInfos[];
-  time?: number;
+  maxTime?: number;
+  visible: boolean
+  onRequestClose(): void
+  onTimeEnd(): void
 }
 
 const OrderConfirmationModal = (props: IProps) => {
+
+  const [timer, setTimer] = useState(props.maxTime || 10)
+
+  useEffect(() => {
+    let t = setInterval(() => {
+      verifyTimer()
+    }, 1000)
+
+    return () => { clearInterval(t) }
+  }, [props.visible])
+
+  useEffect(() => {
+    if (timer === 0) {
+      props.onTimeEnd()
+    }
+  }, [timer])
+
+  function verifyTimer() {
+    if (props.visible) {
+      setTimer((old) => old - 1)
+    } else {
+      setTimer(props.maxTime || 10)
+    }
+  }
+
   return (
-    <MdModal modalTitle="Confirmar pedido">
+    <MdModal visible={props.visible} onRequestClose={props.onRequestClose} modalTitle="Confirmar pedido">
       <Message>
         Aqui está um resumo do seu pedido antes de você finalizar:
       </Message>
@@ -35,9 +64,9 @@ const OrderConfirmationModal = (props: IProps) => {
         </InfoContainer>
       ))}
       <TimeInfo>
-        Aguarde, seu pedido será confirmado em {props.time} segundos
+        Aguarde, seu pedido será confirmado em {timer} segundos
       </TimeInfo>
-      <ProgressBarContainer
+      {/* <ProgressBarContainer
         style={{
           shadowColor: '#000',
           shadowOffset: {
@@ -50,12 +79,14 @@ const OrderConfirmationModal = (props: IProps) => {
           elevation: 2,
         }}>
         <ProgressBar />
-      </ProgressBarContainer>
+      </ProgressBarContainer> */}
       <WarningText>
         Atenção: após a confirmação do pedido, não será possível cancelar o
         pedido.
       </WarningText>
-      <Button type="white" titleColor="titles" title="Cancelar pedido" />
+      <BtnContainer>
+        <Button type="white" titleColor="titles" title="Cancelar pedido" />
+      </BtnContainer>
     </MdModal>
   );
 };

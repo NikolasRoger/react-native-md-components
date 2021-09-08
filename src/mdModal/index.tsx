@@ -16,11 +16,13 @@ interface IProps {
   modalSubtitle?: string;
   onRequestClose?(): void;
   children?: any;
+  visible?: boolean;
 }
 
 const MdModal = (props: IProps) => {
+  
   return (
-    <Modal transparent>
+    <Modal visible={props.visible} onRequestClose={props.onRequestClose} transparent>
       <View
         style={{
           backgroundColor: 'rgba(15, 16, 17, 0.6)',

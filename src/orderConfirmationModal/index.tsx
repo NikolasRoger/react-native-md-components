@@ -4,9 +4,9 @@ import {
   InfoContent,
   InfoTitle,
   Message,
-  ProgressBarContainer,
+/*   ProgressBarContainer, */
   TimeInfo,
-  ProgressBar,
+/*   ProgressBar, */
   WarningText,
   BtnContainer,
 } from './styles';

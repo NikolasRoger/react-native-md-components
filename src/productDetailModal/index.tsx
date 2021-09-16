@@ -33,15 +33,22 @@ interface IProps {
 
 const ProductDetailModal = (props: IProps) => {
 
-  const [selectedAddons, setSelectedAddons] = useState(props.addonsSelected || [])
+  const [selectedAddons, setSelectedAddons] = useState([])
   const [error, setError] = useState(null)
 
   useEffect(() => {
     if (props.visible) {
-      setSelectedAddons([])
       setError(null)
     }
   }, [props.visible])
+
+  useEffect(() => {
+    if(props.addonsSelected) {
+      setSelectedAddons(props.addonsSelected)
+    } else {
+      setSelectedAddons([])
+    }
+  }, [props.addonsSelected])
 
   function _handleAddRadio(addon: any, group_id: any, group_name: string) {
     setSelectedAddons(oldSelected => {

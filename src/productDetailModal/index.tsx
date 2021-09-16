@@ -27,12 +27,13 @@ interface IProps {
   productPrice: string
   establishment: string
   addons?: any
+  addonsSelected?: any
   infoData?: any
 }
 
 const ProductDetailModal = (props: IProps) => {
 
-  const [selectedAddons, setSelectedAddons] = useState([])
+  const [selectedAddons, setSelectedAddons] = useState(props.addonsSelected || [])
   const [error, setError] = useState(null)
 
   useEffect(() => {

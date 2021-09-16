@@ -43,17 +43,18 @@ const ProductDetailModal = (props: IProps) => {
     }
   }, [props.visible])
 
-  function _handleAddRadio(addon: any, group_id: any) {
+  function _handleAddRadio(addon: any, group_id: any, group_name: string) {
     setSelectedAddons(oldSelected => {
       let newState = oldSelected.filter(i => i.group_id != group_id)
       addon.group_id = group_id
+      addon.group_name = group_name
       newState.push(addon)
 
       return newState
     })
   }
 
-  function _handlePressCheckbox(addon: any, group_id: number, max_choices: number) {
+  function _handlePressCheckbox(addon: any, group_id: number, group_name: string, max_choices: number) {
     setSelectedAddons(oldSelected => {
       let exists = oldSelected.find(i => i.id === addon.id)
       if (exists) {
@@ -71,6 +72,7 @@ const ProductDetailModal = (props: IProps) => {
         } else {
           let newState = oldSelected
           addon.group_id = group_id
+          addon.group_name = group_name
           newState.push(addon)
           return [...newState]
         }
@@ -78,7 +80,7 @@ const ProductDetailModal = (props: IProps) => {
     })
   }
 
-  function _handleAddAddon(addon: any, group_id: number, max_choices: number) {
+  function _handleAddAddon(addon: any, group_id: number, group_name: string, max_choices: number) {
     setSelectedAddons(oldSelected => {
       let exists = oldSelected.find(i => i.id === addon.id)
       if (exists) {
@@ -106,6 +108,7 @@ const ProductDetailModal = (props: IProps) => {
         } else {
           let newState = oldSelected
           addon.group_id = group_id
+          addon.group_name = group_name
           addon.qtd = 1
           newState.push(addon)
           return [...newState]
@@ -179,14 +182,14 @@ const ProductDetailModal = (props: IProps) => {
                 addon.items.map((item) => {
                   if (addon.group.max_choices === 1) {
                     return (
-                      <OptionContainer onPress={() => _handleAddRadio(item, addon.group.id)}>
+                      <OptionContainer onPress={() => _handleAddRadio(item, addon.group.id, addon.group.name)}>
                         <Icon name={selectedAddons.find(i => i.id === item.id) ? "ios-radio-button-on" : "ios-radio-button-off"} size={25} color="black" />
                         <OptionTitle>{item.name}</OptionTitle>
                       </OptionContainer>
                     )
                   } else if (addon.group.max_choices != 1 && (item.limit_amount === 1 || item.limit_amount === "1")) {
                     return (
-                      <OptionContainer onPress={() => _handlePressCheckbox(item, addon.group.id, addon.group.max_choices)}>
+                      <OptionContainer onPress={() => _handlePressCheckbox(item, addon.group.id, addon.group.name, addon.group.max_choices)}>
                         <Icon name={selectedAddons.find(i => i.id === item.id) ? "ios-checkbox" : "square-outline"} size={25} color="black" />
                         <OptionTitle>{item.name}</OptionTitle>
                       </OptionContainer>
@@ -206,7 +209,7 @@ const ProductDetailModal = (props: IProps) => {
                           <NumberContainer>
                             <NumberOfItems>{selectedAddons.find(i => i.id === item.id)?.qtd || 0}</NumberOfItems>
                           </NumberContainer>
-                          <IconContainer onPress={() => _handleAddAddon(item, addon.group.id, addon.group.max_choices)}>
+                          <IconContainer onPress={() => _handleAddAddon(item, addon.group.id, addon.group.name, addon.group.max_choices)}>
                             <Icon
                               name="ios-add-circle-outline"
                               color={Colors['titles']}

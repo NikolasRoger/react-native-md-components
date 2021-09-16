@@ -10,6 +10,8 @@ export const Container = styled.View`
   position: absolute;
   bottom: 0;
   padding: 30px;
+  max-height: 90%;
+  height: 90%;
 `;
 
 export const ModalHeaderContainer = styled.View`
@@ -38,4 +40,9 @@ export const CloseIconContainer = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   padding-left: 10px;
+`
+
+export const ChildrenContainer = styled.ScrollView`
+  flex: 1;
+  width: 100%
 `

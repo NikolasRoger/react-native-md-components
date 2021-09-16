@@ -103,7 +103,7 @@ const ProductList = (props: IProps) => {
               </>
             )}
           </InfoContainer>
-          {!item.displayIcon && (
+          {item.displayIcon && (
             <ArrowIconContainer>
               <Icon
                 name="chevron-forward-outline"

@@ -6,6 +6,7 @@ import {
   ModalTitleContainer,
   ModalSubtitle,
   CloseIconContainer,
+  ChildrenContainer,
 } from './styles';
 import {Modal, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -40,7 +41,9 @@ const MdBottomModal = (props: IProps) => {
               <Icon name="close" color={Colors['titles']} size={32} />
             </CloseIconContainer>
           </ModalHeaderContainer>
+          <ChildrenContainer>
           {props.children}
+          </ChildrenContainer>
         </Container>
       </View>
     </Modal>

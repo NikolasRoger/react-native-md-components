@@ -5,6 +5,7 @@ import Fonts from '../config/fonts';
 type TContainerProps = {
   m?: string
   type: TColors
+  textcolor: TColors
 }
 
 export const Container = styled.View<TContainerProps>`
@@ -22,4 +23,9 @@ export const Container = styled.View<TContainerProps>`
 export const StyledInput = styled.TextInput`
   font-family: ${Fonts.primary};
   flex: 1;
+  color: ${(props) => Colors[props.textColor]};
 `;
+
+export const IconContainer = styled.TouchableOpacity`
+
+`

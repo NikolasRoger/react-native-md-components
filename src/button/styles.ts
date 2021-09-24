@@ -37,3 +37,4 @@ export const Title = styled.Text<TTitleProps>`
     font-family: ${Fonts.primarySemiBold};
     font-weight: 600;
 `
+

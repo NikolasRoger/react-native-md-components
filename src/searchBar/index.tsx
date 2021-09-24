@@ -7,14 +7,14 @@ import type { TextInputProps } from 'react-native';
 interface IProps extends TextInputProps {
   m?: string
   type: TColors
-  textcolor: TColors
+  textColor: TColors
   onPress?(): any;
 }
 
-const SearchBar = ({m, type, textcolor, onPress, ...rest}: IProps) => {
+const SearchBar = ({m, type, textColor, onPress, ...rest}: IProps) => {
   return (
     <Container m={m} type={type}>
-      <StyledInput placeholder="Digite o que procura" textcolor={textcolor} {...rest} />
+      <StyledInput placeholder="Digite o que procura" textColor={textColor} {...rest} />
       <IconContainer onPress={onPress}>
         <Icon name="ios-search" color={Colors['inputItens']} size={25} />
       </IconContainer>

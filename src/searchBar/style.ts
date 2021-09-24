@@ -5,7 +5,10 @@ import Fonts from '../config/fonts';
 type TContainerProps = {
   m?: string
   type: TColors
-  textcolor: TColors
+}
+
+type TTextInputProps = {
+  textColor: TColors
 }
 
 export const Container = styled.View<TContainerProps>`
@@ -20,7 +23,7 @@ export const Container = styled.View<TContainerProps>`
   margin-top: ${(props) => props.m || "0px"};
   `
 
-export const StyledInput = styled.TextInput`
+export const StyledInput = styled.TextInput<TTextInputProps>`
   font-family: ${Fonts.primary};
   flex: 1;
   color: ${(props) => Colors[props.textColor]};

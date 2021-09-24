@@ -152,10 +152,12 @@ const ProductDetailModal = (props: IProps) => {
       } else {
         setError(null)
         props.onFinish(props.infoData, selectedAddons)
+        setSelectedAddons([])
       }
     } else {
       setError(null)
       props.onFinish(props.infoData, selectedAddons)
+      setSelectedAddons([])
     }
   }
 
@@ -163,7 +165,10 @@ const ProductDetailModal = (props: IProps) => {
     <MdBottomModal
       modalTitle="Detalhes do item"
       visible={props.visible}
-      onRequestClose={props.onRequestClose}
+      onRequestClose={() => {
+        props.onRequestClose()
+        setSelectedAddons([])
+      }}
       modalSubtitle={props.establishment}
     >
       <ProductList

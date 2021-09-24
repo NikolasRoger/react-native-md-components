@@ -27,6 +27,7 @@ export const StyledInput = styled.TextInput<TInputProps>`
   height: 50px;
   width: 100%;
   font-family: ${Fonts.primary};
+  color: ${Colors.text};
 `;
 
 export const Label = styled.Text<TLabelProps>`

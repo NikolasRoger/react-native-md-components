@@ -19,6 +19,8 @@ export const Container = styled.TouchableOpacity<TContainerProps>`
 `;
 
 export const ImageBg = styled.View<TImageBgProps>`
+  justify-content: center;
+  align-items: center;
   height: 80px;
   width: 80px;
   background-color: ${(props) => props.color};

@@ -2,6 +2,7 @@ import React from 'react';
 import {ScrollView} from 'react-native';
 import Colors from '../config/colors';
 import {Container, ImageBg, Categorie, CategorieImage} from './styles';
+import Icon from 'react-native-vector-icons/Fontisto'
 
 interface IItem {
   title: string;
@@ -47,10 +48,13 @@ const HorizontalCategories = (props: IProps) => {
               elevation: 4,
             }}>
               {
-                item.image && (
+                item.image ? (
                   <CategorieImage
                     source={{ uri: item.image }}
                   />
+                )
+                : (
+                  <Icon name="shopping-bag-1" size={34} style={{color: '#D1D8DB'}}/>
                 )
               }
           </ImageBg>

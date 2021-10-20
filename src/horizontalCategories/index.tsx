@@ -1,7 +1,7 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import { FlatList } from 'react-native';
 import Colors from '../config/colors';
-import {Container, ImageBg, Categorie, CategorieImage} from './styles';
+import { Container, ImageBg, Categorie, CategorieImage } from './styles';
 import Icon from 'react-native-vector-icons/Fontisto'
 
 interface IItem {
@@ -19,7 +19,7 @@ interface IProps {
 
 const HorizontalCategories = (props: IProps) => {
   return (
-    <ScrollView
+    <FlatList
       horizontal
       showsHorizontalScrollIndicator={false}
       style={{
@@ -28,12 +28,13 @@ const HorizontalCategories = (props: IProps) => {
       }}
       contentContainerStyle={{
         paddingLeft: 30,
-      }}>
-      {props.items.map((item, index) => (
+      }}
+      keyExtractor={item => item.title}
+      data={props.items}
+      renderItem={({ item }) => (
         <Container
           mr={props.mr}
-          onPress={() => props.onPress && props.onPress(item.infoData)}
-          key={index}>
+          onPress={() => props.onPress && props.onPress(item.infoData)}>
           <ImageBg
             color={Colors['bg']}
             style={{
@@ -47,21 +48,21 @@ const HorizontalCategories = (props: IProps) => {
 
               elevation: 4,
             }}>
-              {
-                item.image ? (
-                  <CategorieImage
-                    source={{ uri: item.image }}
-                  />
-                )
+            {
+              item.image ? (
+                <CategorieImage
+                  source={{ uri: item.image }}
+                />
+              )
                 : (
-                  <Icon name="shopping-bag-1" size={34} style={{color: '#D1D8DB'}}/>
+                  <Icon name="shopping-bag-1" size={34} style={{ color: '#D1D8DB' }} />
                 )
-              }
+            }
           </ImageBg>
           <Categorie>{item.title}</Categorie>
         </Container>
-      ))}
-    </ScrollView>
+      )}>
+    </FlatList>
   );
 };
 

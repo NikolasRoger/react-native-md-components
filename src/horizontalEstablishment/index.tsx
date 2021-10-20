@@ -1,6 +1,6 @@
 import React from 'react';
 import Colors from '../config/colors';
-import {ScrollView} from 'react-native';
+import { FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
   Container,
@@ -29,7 +29,7 @@ interface IProps {
 
 const HorizontalEstablishment = (props: IProps) => {
   return (
-    <ScrollView
+    <FlatList
       horizontal
       showsHorizontalScrollIndicator={false}
       style={{
@@ -38,12 +38,14 @@ const HorizontalEstablishment = (props: IProps) => {
       }}
       contentContainerStyle={{
         paddingLeft: 30,
-      }}>
-      {props.items.map((item, index) => (
+      }}
+      keyExtractor={item => item.infoData.id}
+      data={props.items}
+      renderItem={({ item }) => (
         <Container
           mr="20px"
           onPress={() => props.onPress && props.onPress(item.infoData)}
-          key={index}>
+        >
           <EstablishmentImageContainer
             m="10px"
             style={{
@@ -54,7 +56,6 @@ const HorizontalEstablishment = (props: IProps) => {
               },
               shadowOpacity: 0.23,
               shadowRadius: 2.62,
-
               elevation: 4,
             }}>
             <EstablishmentImage source={{ uri: item.image }} />
@@ -104,8 +105,9 @@ const HorizontalEstablishment = (props: IProps) => {
             )
           }
         </Container>
-      ))}
-    </ScrollView>
+      )}
+    >
+    </FlatList>
   );
 };
 

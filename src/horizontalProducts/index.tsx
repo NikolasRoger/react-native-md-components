@@ -1,8 +1,8 @@
 import React from 'react';
 import Colors from '../config/colors';
-import {ScrollView} from 'react-native';
+import { FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Container, ProductImageContainer, ProductImage} from './styles';
+import { Container, ProductImageContainer, ProductImage } from './styles';
 import {
   Name,
   InfoContainer,
@@ -27,7 +27,7 @@ interface IProps {
 
 const HorizontalProducts = (props: IProps) => {
   return (
-    <ScrollView
+    <FlatList
       horizontal
       showsHorizontalScrollIndicator={false}
       style={{
@@ -36,9 +36,11 @@ const HorizontalProducts = (props: IProps) => {
       }}
       contentContainerStyle={{
         paddingLeft: 30,
-      }}>
-      {props.items.map((item, index) => (
-        <Container key={index} onPress={() => props.onPress && props.onPress(item.infoData)}>
+      }}
+      keyExtractor={item => item.infoData.id}
+      data={props.items}
+      renderItem={({ item }) => (
+        <Container onPress={() => props.onPress && props.onPress(item.infoData)}>
           <ProductImageContainer
             m="10px"
             style={{
@@ -83,8 +85,9 @@ const HorizontalProducts = (props: IProps) => {
             </DataContainer>
           </InfoContainer>
         </Container>
-      ))}
-    </ScrollView>
+      )}
+    >
+    </FlatList>
   );
 };
 

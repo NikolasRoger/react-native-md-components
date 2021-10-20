@@ -12,7 +12,7 @@ type TImageBgProps = {
 
 
 export const Container = styled.TouchableOpacity<TContainerProps>`
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-right: ${(props) => props.mr || '0px'};
   margin-right: 20px;
@@ -38,6 +38,8 @@ export const Categorie = styled.Text`
   font-weight: 600;
   color: ${Colors.titles};
   margin-top: 10px;
+  width: 100%;
+  max-width: 100px;
 `
 
 export const CategorieImage = styled.Image.attrs({

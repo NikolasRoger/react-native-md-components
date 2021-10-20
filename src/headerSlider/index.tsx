@@ -4,12 +4,9 @@ import Colors from '../config/colors';
 import {
   Container,
   List,
-  SlideContainer,
   SlideImage,
   SlidePagination,
   PaginationDot,
-  SlideTitle,
-  SlideSubtitle,
 } from './styles';
 
 const {width: windowWidth} = Dimensions.get('window');
@@ -17,7 +14,7 @@ const {width: windowWidth} = Dimensions.get('window');
 const slideList = [
   {
     id: 1,
-    image: require('../assets/home-illustration.png'),
+    image: require('../assets/headerMD.png'),
     title: 'Você possui um novo cupom!',
     subtitle: 'Use o seu cupom na sua próxima compra',
   },
@@ -25,15 +22,17 @@ const slideList = [
 
 const Slide = memo(function Slide({data}: any) {
   return (
-    <SlideContainer>
+    <>
+      {/* <SlideContainer>
       <SlideTitle titleColor={Colors['titles']}>
         {data.title.toUpperCase()}
       </SlideTitle>
       <SlideSubtitle subtitleColor={Colors['titles']}>
         {data.subtitle}
       </SlideSubtitle>
+    </SlideContainer> */}
       <SlideImage source={data.image} />
-    </SlideContainer>
+    </>
   );
 });
 

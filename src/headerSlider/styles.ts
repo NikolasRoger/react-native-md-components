@@ -48,11 +48,12 @@ export const SlideContainer = styled.View`
 `
 
 export const SlideImage = styled.Image.attrs({
-  resizeMode: 'contain'
+  resizeMode: 'cover'
 })`
   width: 100%;
-  height: 250px;
-  margin-bottom: -10px;
+  height: auto;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 `
 
 export const SlidePagination  = styled.View`

@@ -6,9 +6,10 @@ type TContainerProps = {
 }
 
 export const Container = styled.TouchableOpacity<TContainerProps>`
-  width: 100%;
+  flex: 1;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-bottom: ${(props) => props.m || "0px"};
   margin-top: 10px;
 `;

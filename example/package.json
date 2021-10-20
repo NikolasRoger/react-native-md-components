@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-md-components": "file:../react-native-md-components-0.1.52.tgz",
+    "react-native-md-components": "file:../react-native-md-components-0.1.53.tgz",
     "react-native-vector-icons": "^8.1.0"
   },
   "devDependencies": {

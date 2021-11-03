@@ -25,6 +25,7 @@ type TInfoProps = {
 
 export const Container = styled.TouchableOpacity<TContainerProps>`
   margin-right: ${(props) => props.mr || '0px'};
+  width: 203px;
 `;
 
 export const EstablishmentImageContainer = styled.View<TEstablishmentImageContainerProps>`

@@ -29,6 +29,7 @@ interface IProps {
   addons?: any
   addonsSelected?: any
   infoData?: any
+  imageSize?: string
 }
 
 const ProductDetailModal = (props: IProps) => {
@@ -161,6 +162,10 @@ const ProductDetailModal = (props: IProps) => {
     }
   }
 
+  if(!props.visible) {
+    return null
+  }
+
   return (
     <MdBottomModal
       modalTitle="Detalhes do item"
@@ -184,6 +189,8 @@ const ProductDetailModal = (props: IProps) => {
             displayIcon: false,
           }
         ]}
+        imageSize={props.imageSize}
+        showZoom={true}
       />
       {
         props.addons && props.addons.map(addon => {
@@ -242,9 +249,9 @@ const ProductDetailModal = (props: IProps) => {
       {error && <Error>{error}</Error>}
       <MainAddItemContainer>
         <AddItemContainer>
-          <IconContainer onPress={() => props.onPressAdd(props.infoData)}>
+          <IconContainer onPress={() => props.onPressRemove(props.infoData)}>
             <Icon
-              name="ios-add-circle-outline"
+              name="ios-remove-circle-outline"
               color={Colors['titles']}
               size={34}
             />
@@ -252,9 +259,9 @@ const ProductDetailModal = (props: IProps) => {
           <NumberContainer>
             <NumberOfItems>{props.qtd}</NumberOfItems>
           </NumberContainer>
-          <IconContainer onPress={() => props.onPressRemove(props.infoData)}>
+          <IconContainer onPress={() => props.onPressAdd(props.infoData)}>
             <Icon
-              name="ios-remove-circle-outline"
+              name="ios-add-circle-outline"
               color={Colors['titles']}
               size={34}
             />

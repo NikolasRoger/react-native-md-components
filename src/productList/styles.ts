@@ -12,6 +12,10 @@ type TContainerProps = {
   mt?: string
 }
 
+type TImageContainerProps = {
+  imageSize?: string
+}
+
 export const Container  = styled.View<TContainerProps>`
   margin-top: ${(props) => props.mt || '20px'};
   align-content: center;
@@ -19,14 +23,15 @@ export const Container  = styled.View<TContainerProps>`
 
 export const ItemContainer = styled.TouchableOpacity`
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   padding-bottom: 20px;
 `;
 
-export const ImageContainer = styled.View`
-  width: 70px;
-  height: 70px;
+export const ImageContainer = styled.View<TImageContainerProps>`
+  width: ${props => props.imageSize ? props.imageSize : '80px'};
+  height: ${props => props.imageSize ? props.imageSize : '80px'};
   border-radius: 10px;
+  position: relative;
 `
 
 export const ProductImage = styled.Image.attrs({
@@ -36,6 +41,28 @@ export const ProductImage = styled.Image.attrs({
   height: 100%;
   border-radius: 10px;
 `;
+
+export const ImageView = styled.Image.attrs({
+  resizeMode: 'contain'
+})`
+  /* margin-top: 50px; */
+  width: 100%;
+  height: 100%;
+`
+
+export const CloseButtonContainer = styled.TouchableOpacity`
+  position: absolute;
+  z-index: 1;
+  padding: 10px;
+  right: 10px;
+  top: 24px;
+`
+
+export const IconZoomContainer = styled.View`
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+`
 
 export const LikeContainer  = styled.TouchableOpacity`
   width: 26px;

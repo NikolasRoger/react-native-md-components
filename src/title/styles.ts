@@ -6,12 +6,14 @@ type TBaseTitleProps = {
   color: TColors
   m?: string
   mb?: string
+  weight?: number 
+  size?: number
 }
 
 export const BaseTitle = styled.Text<TBaseTitleProps>`
-  font-size: 20px;
+  font-size: ${props => props.size ? props.size : 20 + 'px'};
   font-family: ${Fonts.primarySemiBold};
-  font-weight: 600;
+  font-weight: ${props => props.weight ? props.weight : 600};
   color: ${(props) => Colors[props.color]};
   margin-top: ${(props) => props.m || '0px'};
   margin-bottom: ${(props) => props.mb || '0px'};

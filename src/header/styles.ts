@@ -15,7 +15,7 @@ export const Container = styled.View`
   border-bottom-right-radius: 30px;
   padding: 30px;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 20px;
 `;
 
@@ -32,12 +32,22 @@ export const ContentContainer = styled.View<TContentContainerProps>`
 
 export const CategorieTitle = styled.Text`
   font-family: ${Fonts.primarySemiBold};
+  font-size: 18px;
+  letter-spacing: .4px;
+  text-align: right;
+  color: ${Colors['titles']};
+  font-weight: bold;
+`
+
+export const CategorySubtitle = styled.Text`
+  font-family: ${Fonts.primarySemiBold};
   font-size: 17px;
   letter-spacing: .4px;
   text-align: right;
   color: ${Colors['titles']};
   font-weight: bold;
 `
+
 
 export const CategorieDescription = styled.Text`
   font-family: ${Fonts.primary};

@@ -42,7 +42,7 @@ export const List = styled.FlatList<TFlatListProps>`
 export const SlideContainer = styled.View`
   padding: 30px;
   height: 100%;
-  width: ${windowWidth};
+  width: ${windowWidth}px;
   justify-content: center;
   align-items: center;
 `
@@ -50,7 +50,7 @@ export const SlideContainer = styled.View`
 export const SlideImage = styled.Image.attrs({
   resizeMode: 'cover'
 })`
-  width: 100%;
+  width: ${windowWidth}px;
   height: auto;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;

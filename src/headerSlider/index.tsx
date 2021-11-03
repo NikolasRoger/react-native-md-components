@@ -21,19 +21,7 @@ const slideList = [
 ];
 
 const Slide = memo(function Slide({data}: any) {
-  return (
-    <>
-      {/* <SlideContainer>
-      <SlideTitle titleColor={Colors['titles']}>
-        {data.title.toUpperCase()}
-      </SlideTitle>
-      <SlideSubtitle subtitleColor={Colors['titles']}>
-        {data.subtitle}
-      </SlideSubtitle>
-    </SlideContainer> */}
-      <SlideImage source={data.image} />
-    </>
-  );
+  return <SlideImage source={data.image} />
 });
 
 function Pagination({index}: any) {

@@ -58,7 +58,14 @@ const HorizontalEstablishment = (props: IProps) => {
               shadowRadius: 2.62,
               elevation: 4,
             }}>
-            <EstablishmentImage source={{ uri: item.image }} />
+            <EstablishmentImage 
+              source={{ uri: item.image }} 
+              style={{ 
+                borderWidth: 1, 
+                borderColor: '#e4e4e4',
+                borderRadius: 10
+              }}
+            />
           </EstablishmentImageContainer>
           <Name textColor={Colors['titles']}>{item.title}</Name>
           {

@@ -22,7 +22,9 @@ const formatMoney = (n: any) => {
 }
 
 const formatDate = (date: string) => {
-    if (!date) return
+    if (!date) {
+      return false
+    }
     if (date.includes('T')) {
         date = date.split('T')[0]
     }
@@ -101,10 +103,6 @@ const formatCpfCnpj = (text: string) => {
     }
 }
 
-const clearCpfCnpj = (cpfcnpj: string) => {
-    if (cpfcnpj) return cpfcnpj.replace(/\D/g, '')
-}
-
 const getDbDate = () => {
     const date = new Date(),
         y = date.getFullYear(),
@@ -164,7 +162,6 @@ export default {
     formatCnpj,
     formatCpf,
     formatCpfCnpj,
-    clearCpfCnpj,
     getDbDate,
     cardMask,
     contactMask,

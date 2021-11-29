@@ -94,7 +94,7 @@ const ProductDetailModal = React.memo((props: IProps) => {
     })
   }
 
-  function _handleAddAddon(addon: any, group_id: number, group_name: string, max_choices: number) {
+  function _handleAddAddon(addon: any, group_id: number, group_name: string) {
     setSelectedAddons(oldSelected => {
       let exists = oldSelected.find(i => i.id === addon.id)
       if (exists) {
@@ -286,7 +286,7 @@ const ProductDetailModal = React.memo((props: IProps) => {
                             <NumberContainer>
                               <NumberOfItems>{selectedAddons.find(i => i.id === item.id)?.qtd || 0}</NumberOfItems>
                             </NumberContainer>
-                            <IconContainer onPress={() => _handleAddAddon(item, addon.group.id, addon.group.name, addon.group.max_choices)}>
+                            <IconContainer onPress={() => _handleAddAddon(item, addon.group.id, addon.group.name)}>
                               <Icon
                                 name="ios-add-circle-outline"
                                 color={Colors['titles']}

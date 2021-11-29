@@ -19,4 +19,4 @@ const AddressSelect = (props: IProps) => {
   );
 };
 
-export default AddressSelect;
+export default React.memo(AddressSelect);

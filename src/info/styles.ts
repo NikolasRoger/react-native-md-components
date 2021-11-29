@@ -107,15 +107,16 @@ export const BadgeContainer = styled.View<TBadgeContainerProps>`
   padding: 3px;
   background-color: ${(props) => Colors[props.bg]};
   position: absolute;
+  z-index: -1;
   bottom: ${(props) => props.bottom};
   justify-content: flex-end;
   align-items: center;
 `;
 
 export const BadgeContent = styled.Text`
-  font-family: ${Fonts.primary};
+  font-family: ${Fonts.primaryBold};
   font-size: 14px;
-  color: ${Colors['titles']};
+  color: #fff;
 `
 
 export const RowButtons = styled.View`

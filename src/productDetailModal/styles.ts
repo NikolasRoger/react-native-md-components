@@ -4,6 +4,7 @@ import Fonts from '../config/fonts';
 
 type TContainerOption = {
   'space-between'?: boolean
+  value?: string
 }
 
 export const MainAddItemContainer = styled.View`
@@ -48,8 +49,8 @@ export const OptionsList = styled.ScrollView`
 export const GroupTitle = styled.Text`
   padding: 20px 20px;
   width: 100%;
-  background-color: #FDFDFD;
-  color: black;
+  background-color: #F8F8F8;
+  color: ${Colors.titles};
   font-family: ${Fonts.title};
   justify-content: center;
   align-items: center;
@@ -57,10 +58,9 @@ export const GroupTitle = styled.Text`
 
 export const OptionContainer = styled.TouchableOpacity<TContainerOption>`
   justify-content: ${(props) => props['space-between'] ? 'space-between' : "flex-start"};
-  flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  height: 50px;
+  /* height: ${props => props.value ? '64px' : '50px'}; */
   border-bottom-width: 1px;
   border-bottom-color: #A8A8A8;
 `

@@ -2,9 +2,9 @@ import React from 'react';
 import Colors from '../config/colors';
 import { FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import FastImage from 'react-native-fast-image';
 import {
   Container,
-  EstablishmentImage,
   EstablishmentImageContainer,
   Name,
   DataContainer,
@@ -12,6 +12,7 @@ import {
   Info,
   DotSeparator,
 } from './styles';
+import OverlayImage from '../overlayImage'
 
 interface IItem {
   title: string;
@@ -58,14 +59,18 @@ const HorizontalEstablishment = (props: IProps) => {
               shadowRadius: 2.62,
               elevation: 4,
             }}>
-            <EstablishmentImage 
-              source={{ uri: item.image }} 
-              style={{ 
-                borderWidth: 1, 
+            <FastImage
+              source={{ uri: item.image }}
+              resizeMode="cover"
+              style={{
+                borderWidth: 1,
                 borderColor: '#e4e4e4',
-                borderRadius: 10
+                borderRadius: 10,
+                width: '100%',
+                height: '100%'
               }}
             />
+            {!item.infoData.is_open && <OverlayImage/>}
           </EstablishmentImageContainer>
           <Name textColor={Colors['titles']}>{item.title}</Name>
           {
@@ -118,4 +123,4 @@ const HorizontalEstablishment = (props: IProps) => {
   );
 };
 
-export default HorizontalEstablishment;
+export default React.memo(HorizontalEstablishment);

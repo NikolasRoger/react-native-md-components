@@ -13,6 +13,10 @@ import {
 import { MdBottomModal, ProductList, Title, Button } from '..';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../config/colors';
+import { Text, View } from 'react-native';
+import Fonts from '../config/fonts';
+
+import pipes from '../helpers/pipes';
 
 interface IProps {
   visible: boolean
@@ -32,7 +36,7 @@ interface IProps {
   imageSize?: string
 }
 
-const ProductDetailModal = (props: IProps) => {
+const ProductDetailModal = React.memo((props: IProps) => {
 
   const [selectedAddons, setSelectedAddons] = useState([])
   const [error, setError] = useState(null)
@@ -56,6 +60,7 @@ const ProductDetailModal = (props: IProps) => {
       let newState = oldSelected.filter(i => i.group_id != group_id)
       addon.group_id = group_id
       addon.group_name = group_name
+      addon.qtd = 1
       newState.push(addon)
 
       return newState
@@ -75,12 +80,13 @@ const ProductDetailModal = (props: IProps) => {
             choices = choices + 1
           }
         })
-        if (choices >= max_choices) {
+        if (choices >= max_choices && max_choices !== 0) {
           return [...oldSelected]
         } else {
           let newState = oldSelected
           addon.group_id = group_id
           addon.group_name = group_name
+          addon.qtd = 1
           newState.push(addon)
           return [...newState]
         }
@@ -111,7 +117,7 @@ const ProductDetailModal = (props: IProps) => {
             choices = choices + 1
           }
         })
-        if (choices >= max_choices) {
+        if (choices >= addon.limit_amount) {
           return [...oldSelected]
         } else {
           let newState = oldSelected
@@ -142,7 +148,7 @@ const ProductDetailModal = (props: IProps) => {
     if (props.addons) {
       let complete = true
       props.addons.forEach(item => {
-        if (item.group.required) {
+        if (item.group.required && item.group.status === 'A') {
           if (!selectedAddons.find(i => i.group_id === item.group.id)) {
             complete = false
           }
@@ -193,49 +199,102 @@ const ProductDetailModal = (props: IProps) => {
         showZoom={true}
       />
       {
-        props.addons && props.addons.map(addon => {
+        props.addons && props.addons.filter(addon => addon.group.status === 'A'  && addon.items.some(item => item.status === 'A')).map(addon => {
           return (
             <>
-              <GroupTitle>{addon.group.name} {addon.group.required ? "* (obrigatório)" : ""}</GroupTitle>
+              <GroupTitle>{addon.group.name} {addon.group.required ? "(obrigatório)" : ""}</GroupTitle>
               {
                 addon.items.map((item) => {
                   if (addon.group.max_choices === 1) {
                     return (
                       <OptionContainer onPress={() => _handleAddRadio(item, addon.group.id, addon.group.name)}>
-                        <Icon name={selectedAddons.find(i => i.id === item.id) ? "ios-radio-button-on" : "ios-radio-button-off"} size={25} color="black" />
-                        <OptionTitle>{item.name}</OptionTitle>
+                        <View style={{
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          paddingTop: 14,
+                          paddingBottom: 8
+                        }}>
+                          <Icon style={{paddingRight: 4}} name={selectedAddons.find(i => i.id === item.id) ? "ios-radio-button-on" : "ios-radio-button-off"} size={25} color="black" />
+                          <OptionTitle>{item.name}</OptionTitle>
+                        </View>
+                        {item.value && item.value > 0 ? (
+                          <Text style={{
+                          paddingBottom: 8,
+                          color: Colors.secondaryTitle,
+                          fontFamily: Fonts.primary }}>+{pipes.formatMoney(item.value)}</Text>
+                        )
+                        :( null )}
                       </OptionContainer>
                     )
                   } else if (addon.group.max_choices != 1 && (item.limit_amount === 1 || item.limit_amount === "1")) {
                     return (
                       <OptionContainer onPress={() => _handlePressCheckbox(item, addon.group.id, addon.group.name, addon.group.max_choices)}>
-                        <Icon name={selectedAddons.find(i => i.id === item.id) ? "ios-checkbox" : "square-outline"} size={25} color="black" />
-                        <OptionTitle>{item.name}</OptionTitle>
+                        <View style={{
+                          flexDirection: 'row',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          paddingTop: 14,
+                          paddingBottom: 8
+                        }}>
+                          <Icon name={selectedAddons.find(i => i.id === item.id) ? "ios-checkbox" : "square-outline"} size={25} color="black" />
+                          <OptionTitle>{item.name}</OptionTitle>
+                        </View>
+                        {item.value && item.value > 0 ? (
+                          <Text style={{
+                            paddingBottom: 8,
+                            color: Colors.secondaryTitle,
+                            fontFamily: Fonts.primary }}
+                          >
+                            +{pipes.formatMoney(item.value)}
+                          </Text>
+                        ) : ( null )}
                       </OptionContainer>
                     )
                   } else {
                     return (
                       <OptionContainer space-between>
-                        <OptionTitle>{item.name}</OptionTitle>
-                        <AddItemContainer>
-                          <IconContainer onPress={() => _handleRemoveAddon(item)}>
-                            <Icon
-                              name="ios-remove-circle-outline"
-                              color={Colors['titles']}
-                              size={25}
-                            />
-                          </IconContainer>
-                          <NumberContainer>
-                            <NumberOfItems>{selectedAddons.find(i => i.id === item.id)?.qtd || 0}</NumberOfItems>
-                          </NumberContainer>
-                          <IconContainer onPress={() => _handleAddAddon(item, addon.group.id, addon.group.name, addon.group.max_choices)}>
-                            <Icon
-                              name="ios-add-circle-outline"
-                              color={Colors['titles']}
-                              size={25}
-                            />
-                          </IconContainer>
-                        </AddItemContainer>
+                        <View style={{
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          width: '100%',
+                          paddingTop: 14,
+                          paddingBottom: 8
+                        }}>
+                          <View style={{
+                            justifyContent: 'center'
+                          }}>
+                            <OptionTitle>{item.name}</OptionTitle>
+                            {item.value && item.value > 0 ? (
+                              <Text style={{
+                                color: Colors.secondaryTitle,
+                                paddingTop: 8,
+                                fontFamily: Fonts.primary }}
+                              >
+                                +{ pipes.formatMoney(item.value) }
+                              </Text>
+                            ) : ( null )}
+                          </View>
+                          <AddItemContainer>
+                            <IconContainer onPress={() => _handleRemoveAddon(item)}>
+                              <Icon
+                                name="ios-remove-circle-outline"
+                                color={Colors['titles']}
+                                size={25}
+                              />
+                            </IconContainer>
+                            <NumberContainer>
+                              <NumberOfItems>{selectedAddons.find(i => i.id === item.id)?.qtd || 0}</NumberOfItems>
+                            </NumberContainer>
+                            <IconContainer onPress={() => _handleAddAddon(item, addon.group.id, addon.group.name, addon.group.max_choices)}>
+                              <Icon
+                                name="ios-add-circle-outline"
+                                color={Colors['titles']}
+                                size={25}
+                              />
+                            </IconContainer>
+                          </AddItemContainer>
+                        </View>
                       </OptionContainer>
                     )
                   }
@@ -245,7 +304,7 @@ const ProductDetailModal = (props: IProps) => {
           )
         })
       }
-      <Title color="titles" title="Adicionar ao carrinho" mb="20px" />
+      <Title color="titles" title="Adicionar ao carrinho" mb="20px" m="8" />
       {error && <Error>{error}</Error>}
       <MainAddItemContainer>
         <AddItemContainer>
@@ -271,6 +330,6 @@ const ProductDetailModal = (props: IProps) => {
       </MainAddItemContainer>
     </MdBottomModal>
   );
-};
+});
 
 export default ProductDetailModal;

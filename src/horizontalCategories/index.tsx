@@ -1,8 +1,9 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import Colors from '../config/colors';
-import { Container, ImageBg, Categorie, CategorieImage } from './styles';
-import Icon from 'react-native-vector-icons/Fontisto'
+import { Container, ImageBg, Categorie } from './styles';
+import Icon from 'react-native-vector-icons/Fontisto';
+import FastImage from 'react-native-fast-image';
 
 interface IItem {
   title: string;
@@ -38,7 +39,7 @@ const HorizontalCategories = (props: IProps) => {
           <ImageBg
             color={Colors['bg']}
             style={{
-              shadowColor: '#000',
+              shadowColor: '#777',
               shadowOffset: {
                 width: 0,
                 height: 2,
@@ -47,11 +48,17 @@ const HorizontalCategories = (props: IProps) => {
               shadowRadius: 2.62,
 
               elevation: 4,
-            }}>
+            }}
+          >
             {
               item.image ? (
-                <CategorieImage
+                <FastImage
                   source={{ uri: item.image }}
+                  resizeMode="contain"
+                  style={{
+                    width: '100%',
+                    height: '100%'
+                  }}
                 />
               )
                 : (

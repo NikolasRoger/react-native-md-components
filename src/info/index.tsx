@@ -173,7 +173,7 @@ const Info = (props: IProps) => {
             </EditIconContainer>
           )}
           {
-            props.onPressDelete && (
+            props.onPressDelete && !item.infoData.default && (
                 <EditIconContainer
                   style={{
                     shadowColor: "#000",
@@ -187,7 +187,7 @@ const Info = (props: IProps) => {
                     elevation: 6,
                   }}
                   onPress={() => {
-                    if (props.onPressDelete) props.onPressDelete(item.infoData)
+                    if (props.onPressDelete) props.onPressDelete(item.infoData.id)
                   }}
                 >
                   <Icon size={25} name="ios-trash-outline" color={Colors.danger} />

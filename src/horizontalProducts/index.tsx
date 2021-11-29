@@ -2,7 +2,9 @@ import React from 'react';
 import Colors from '../config/colors';
 import { FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Container, ProductImageContainer, ProductImage } from './styles';
+import IconFA from 'react-native-vector-icons/FontAwesome5';
+import { Container, ProductImageContainer } from './styles';
+import FastImage from 'react-native-fast-image';
 import {
   Name,
   InfoContainer,
@@ -54,7 +56,15 @@ const HorizontalProducts = (props: IProps) => {
               backgroundColor: "white",
               elevation: 4,
             }}>
-            <ProductImage source={{ uri: item.image }} />
+            {item.image ? (
+              <FastImage
+                source={{ uri: item.image }}
+                resizeMode="cover"
+                style={{ width: '100%', height: '100%' }}
+              />
+            ) : (
+              <IconFA name="image" size={64} />
+            )}
           </ProductImageContainer>
           <Name textColor={Colors['titles']} numberOfLines={3}>{item.title}</Name>
           <InfoContainer mt="5px" dataColor={Colors['secondaryTitle']}>

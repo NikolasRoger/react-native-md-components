@@ -10,9 +10,9 @@ import {
   EstablishmentServices,
 } from "./styles";
 import Icon from "react-native-vector-icons/Ionicons";
-import { Dot } from "../bottomTabBar/styles";
-import { useNavigation } from "@react-navigation/native";
-import type { StackNavigationProp } from "@react-navigation/stack";
+// import { Dot } from "../bottomTabBar/styles";
+// import { useNavigation } from "@react-navigation/native";
+// import type { StackNavigationProp } from "@react-navigation/stack";
 
 interface IItem {
   content: string;
@@ -26,17 +26,17 @@ interface IProps {
 }
 
 const HeaderPhoto = (props: IProps) => {
-  const navigation = useNavigation<StackNavigationProp<any>>();
+  // const navigation = useNavigation<StackNavigationProp<any>>();
   return (
     <Container>
-      {!props.displayBackIcon && (
+      {/* {!props.displayBackIcon && (
         <IconContainer onPress={() => navigation.pop()}>
           <Icon name="arrow-back-outline" color="white" size={36} />
         </IconContainer>
-      )}
+      )} */}
       <InfoContainer>
         <InfoRow>
-          <EstablishmentName>
+          <EstablishmentName numberOfLines={2}>
             {props.establishmentName.toUpperCase()}
           </EstablishmentName>
 {/*        <Dot color="white" height="5px" width="5px" m="0 5px" />
@@ -44,14 +44,14 @@ const HeaderPhoto = (props: IProps) => {
           <StarsQuantity>{props.starsQuantity}</StarsQuantity> */}
         </InfoRow>
         <InfoRow>
-          {props.items.map((item, index) => (
-            <InfoRow key={index}>
-              <EstablishmentServices>{item.content}</EstablishmentServices>
-              {index !== props.items.length - 1 && (
+          {/* {props.items.map((item, index) => ( */}
+            <InfoRow>
+              <EstablishmentServices numberOfLines={2}>{props.items[0].content} • {props.items[1].content}</EstablishmentServices>
+              {/* {index !== props.items.length - 1 && (
                 <Dot color="white" height="5px" width="5px" m="0 5px" />
-              )}
+              )} */}
             </InfoRow>
-          ))}
+          {/* ))} */}
         </InfoRow>
       </InfoContainer>
       <Photo

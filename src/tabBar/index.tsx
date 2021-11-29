@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {TabTitle, TitleContainer} from './styles';
-import {ScrollView} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 
 interface ITab {
   name: string
@@ -14,20 +14,21 @@ interface IItem {
 interface IProps {
   items: IItem[];
   onScrollToItem?: (name: string) => void
-  onPress?(tab: ITab): any;
+  onPress?(tab: ITab): any
   active?: ITab
   hiddenBorder?: boolean
 }
 
-interface ITabs {
-  name: string
-  x: number
-}
+// interface ITabs {
+//   name: string
+//   x: number
+// }
 
 const TabBar = (props: IProps) => {
-  const [tabs, setTabs] = useState<ITabs[]>([])
 
-  const tabRef = useRef<ScrollView>(null)
+  const tabRef = useRef<FlatList>(null)
+
+  const data = props.items.map((item, index) => ({...item, index }))
 
   function handleOnPress(title: string, index: number) {
     if(props.onPress) {
@@ -39,42 +40,41 @@ const TabBar = (props: IProps) => {
   }
 
   useEffect(() => {
-    if(tabRef.current && tabs.length > 0) {
-      tabRef.current.scrollTo({
-        animated: true,
-        x: tabs.find(tab => tab.name === props.active.name)?.x
+    if(tabRef.current && props.active) {
+      tabRef.current.scrollToIndex({
+        index: props.active.index,
       })
     }
-  }, [props.active, tabs])
+  }, [props.active, tabRef.current])
+
+  const renderItem = ({item, index}) => (
+    <TitleContainer
+      key={index}
+      onPress={() => handleOnPress(item.title, index)}
+    >
+      <View style={{ borderBottomWidth: props.active.name === item.title || props.active.index === index && !props.hiddenBorder ? 2 : 0 }} >
+        <TabTitle>{item.title}</TabTitle>
+      </View>
+    </TitleContainer>
+  )
 
   return (
-    <ScrollView
-      ref={tabRef}
+    <FlatList
       horizontal
       showsHorizontalScrollIndicator={false}
-      style={{
-        width: '100%',
-        marginTop: 20,
-        backgroundColor: '#FFF'
-      }}
-      contentContainerStyle={{
-        paddingLeft: 30,
-      }}>
-      {props.items.map((item, index) => (
-        <TitleContainer
-          onLayout={event => {
-            const { layout } = event.nativeEvent    
-            setTabs(prevState => [...prevState, { name: item.title, x: layout.x + -30 }])
-          }}
-          key={index} 
-          borderSize={props.active.name === item.title || props.active.index === index && !props.hiddenBorder ? '2px' : '0px'}
-          onPress={() => handleOnPress(item.title, index)}
-        >
-          <TabTitle>{item.title}</TabTitle>
-        </TitleContainer>
-      ))}
-    </ScrollView>
+      style={styles.scrollStyle}
+      data={data}
+      keyExtractor={data => String(data.index)}
+      renderItem={renderItem}
+    />
   );
 };
+
+const styles = StyleSheet.create({
+  scrollStyle: {
+    width: '100%',
+    backgroundColor: '#FFF'
+  }
+})
 
 export default TabBar;

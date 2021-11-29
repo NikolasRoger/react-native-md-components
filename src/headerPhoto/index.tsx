@@ -2,14 +2,12 @@ import React from "react";
 import {
   Photo,
   Container,
-  IconContainer,
   InfoContainer,
   InfoRow,
   EstablishmentName,
   /* StarsQuantity, */
   EstablishmentServices,
 } from "./styles";
-import Icon from "react-native-vector-icons/Ionicons";
 // import { Dot } from "../bottomTabBar/styles";
 // import { useNavigation } from "@react-navigation/native";
 // import type { StackNavigationProp } from "@react-navigation/stack";

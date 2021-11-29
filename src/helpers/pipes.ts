@@ -1,15 +1,3 @@
-import api from "../config/api"
-
-function getValidImageUrl(url: string): string {
-    if(!url) return ""
-    let key = url.replace("https://mercado-delivery.s3.sa-east-1.amazonaws.com/", "")
-                .replace("https://mercado-delivery,s3,sa-east-1.amazonaws.com/", "")
-                .replace("https://mercado-delivery.s3-sa-east-1.amazonaws.com/", "")
-                .replace("https://mercado-delivery,s3.sa-east-1.amazonaws.com/", "")
-
-    return `${api.API_URL}/images?key=${key}`
-}
-
 const formatMoney = (n: any) => {
     if (n === 0 || n === null) {
         return 'R$ 0,00'
@@ -161,13 +149,12 @@ const removeHtmlFromText = (text: string): string => {
     return Array.from(text.replace(/<[^>]*>?/gm, ' ')).filter((i, index, arr) => {
         if(index > 0 && arr[index - 1] === " " && i === " ") {
             return false
-        } else { 
+        } else {
             return true
         }
     }).join("").trim()
 }
 export default {
-    getValidImageUrl,
     formatMoney,
     formatDate,
     addDaysToDate,

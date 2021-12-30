@@ -9,9 +9,10 @@ export const Container = styled.TouchableOpacity<TContainerProps>`
   flex: 1;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: ${(props) => props.m || "0px"};
   margin-top: 10px;
+  width: 100%;
 `;
 
 export const Address = styled.Text`
@@ -20,4 +21,5 @@ export const Address = styled.Text`
   font-size: 16px;
   margin-left: 5px;
   margin-right: 5px;
+  flex: 1;
 `

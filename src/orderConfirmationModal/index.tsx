@@ -57,12 +57,13 @@ const OrderConfirmationModal = (props: IProps) => {
         Aqui está um resumo do seu pedido antes de você finalizar:
       </Message>
       {props.infos.map((info, index) => (
+        info ? (
         <InfoContainer key={index}>
           <InfoTitle>
-            {info.infoTitle}: <InfoContent>{info.infoContent}</InfoContent>
+            {info?.infoTitle}: <InfoContent>{info?.infoContent}</InfoContent>
           </InfoTitle>
         </InfoContainer>
-      ))}
+      ) : ( null )))}
       <TimeInfo>
         Aguarde, seu pedido será confirmado em {timer} segundos
       </TimeInfo>

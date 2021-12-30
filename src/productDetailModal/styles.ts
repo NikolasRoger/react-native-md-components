@@ -51,7 +51,7 @@ export const GroupTitle = styled.Text`
   width: 100%;
   background-color: #F8F8F8;
   color: ${Colors.titles};
-  font-family: ${Fonts.title};
+  font-family: ${Fonts.primary};
   justify-content: center;
   align-items: center;
 `
@@ -67,7 +67,7 @@ export const OptionContainer = styled.TouchableOpacity<TContainerOption>`
 
 export const OptionTitle = styled.Text`
   color: black;
-  font-family: ${Fonts.title};
+  font-family: ${Fonts.primary};
 `
 
 export const Error = styled.Text`

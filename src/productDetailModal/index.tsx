@@ -18,6 +18,25 @@ import Fonts from '../config/fonts';
 
 import pipes from '../helpers/pipes';
 
+interface ISelectAddons {
+  created_by: number
+  description: string
+  group_id: number
+  group_name: string
+  id: number
+  limit_amount: string
+  name: string
+  product_addons_id: number
+  product_id: any
+  qtd: number
+  status: string
+  thumbnail: any
+  updated_by: number
+  value: string
+  group_max_choices: number
+  group_total_amount: number
+}
+
 interface IProps {
   visible: boolean
   onRequestClose(): void
@@ -38,12 +57,16 @@ interface IProps {
 
 const ProductDetailModal = React.memo((props: IProps) => {
 
-  const [selectedAddons, setSelectedAddons] = useState([])
+  const [selectedAddons, setSelectedAddons] = useState<ISelectAddons[]>([])
   const [error, setError] = useState(null)
+
+  const totalAmount = React.useRef(0)
 
   useEffect(() => {
     if (props.visible) {
       setError(null)
+    } else {
+      totalAmount.current = 0
     }
   }, [props.visible])
 
@@ -94,16 +117,26 @@ const ProductDetailModal = React.memo((props: IProps) => {
     })
   }
 
-  function _handleAddAddon(addon: any, group_id: number, group_name: string) {
+  function _handleAddAddon(addon: any, group_id: number, group_name: string, max_choices: number) {
+    let total = 0
+    selectedAddons.forEach(select => {
+      if(select.group_id === group_id) {
+        total += select.qtd
+      }
+    })
     setSelectedAddons(oldSelected => {
       let exists = oldSelected.find(i => i.id === addon.id)
+      if(total >= max_choices) {
+        return [...oldSelected]
+      }
       if (exists) {
-        if (addon.limit_amount < exists.qtd + 1) {
+        if (exists.qtd > addon.limit_amount) {
           return [...oldSelected]
         } else {
           let newState = oldSelected.map((i) => {
             if (i.id === exists.id) {
               i.qtd = i.qtd + 1
+              total += 1
             }
             return i
           })
@@ -117,13 +150,15 @@ const ProductDetailModal = React.memo((props: IProps) => {
             choices = choices + 1
           }
         })
-        if (choices >= addon.limit_amount) {
+        if (choices > addon.limit_amount) {
           return [...oldSelected]
         } else {
           let newState = oldSelected
           addon.group_id = group_id
           addon.group_name = group_name
           addon.qtd = 1
+          addon.group_max_choices = max_choices
+          totalAmount.current += 1
           newState.push(addon)
           return [...newState]
         }
@@ -184,6 +219,7 @@ const ProductDetailModal = React.memo((props: IProps) => {
     >
       <ProductList
         disabled={true}
+        separator={false}
         mt="0px"
         items={[
           {
@@ -191,6 +227,7 @@ const ProductDetailModal = React.memo((props: IProps) => {
             liked: true,
             productName: props.productName,
             productDescription: props.productDescription,
+            addons: props.addons,
             productPrice: props.productPrice,
             displayIcon: false,
           }
@@ -217,16 +254,16 @@ const ProductDetailModal = React.memo((props: IProps) => {
                           <Icon style={{paddingRight: 4}} name={selectedAddons.find(i => i.id === item.id) ? "ios-radio-button-on" : "ios-radio-button-off"} size={25} color="black" />
                           <OptionTitle>{item.name}</OptionTitle>
                         </View>
-                        {item.value && item.value > 0 ? (
+                        {item.value && item.value != 0 ? (
                           <Text style={{
                           paddingBottom: 8,
                           color: Colors.secondaryTitle,
-                          fontFamily: Fonts.primary }}>+{pipes.formatMoney(item.value)}</Text>
+                          fontFamily: Fonts.primary }}>{pipes.formatMoney(item.value)}</Text>
                         )
                         :( null )}
                       </OptionContainer>
                     )
-                  } else if (addon.group.max_choices != 1 && (item.limit_amount === 1 || item.limit_amount === "1")) {
+                  } else if (addon.group.max_choices != 1 && addon.items.every(item => item.limit_amount === 1 || item.limit_amount === '1')) {
                     return (
                       <OptionContainer onPress={() => _handlePressCheckbox(item, addon.group.id, addon.group.name, addon.group.max_choices)}>
                         <View style={{
@@ -239,18 +276,18 @@ const ProductDetailModal = React.memo((props: IProps) => {
                           <Icon name={selectedAddons.find(i => i.id === item.id) ? "ios-checkbox" : "square-outline"} size={25} color="black" />
                           <OptionTitle>{item.name}</OptionTitle>
                         </View>
-                        {item.value && item.value > 0 ? (
+                        {item.value && item.value != 0 ? (
                           <Text style={{
                             paddingBottom: 8,
                             color: Colors.secondaryTitle,
                             fontFamily: Fonts.primary }}
                           >
-                            +{pipes.formatMoney(item.value)}
+                            {pipes.formatMoney(item.value)}
                           </Text>
                         ) : ( null )}
                       </OptionContainer>
                     )
-                  } else {
+                  } else if (addon.group.max_choices != 1 && (addon.items.some(item => item.limit_amount > 1))) {
                     return (
                       <OptionContainer space-between>
                         <View style={{
@@ -265,13 +302,13 @@ const ProductDetailModal = React.memo((props: IProps) => {
                             justifyContent: 'center'
                           }}>
                             <OptionTitle>{item.name}</OptionTitle>
-                            {item.value && item.value > 0 ? (
+                            {item.value && item.value != 0 ? (
                               <Text style={{
                                 color: Colors.secondaryTitle,
                                 paddingTop: 8,
                                 fontFamily: Fonts.primary }}
                               >
-                                +{ pipes.formatMoney(item.value) }
+                                { pipes.formatMoney(item.value) }
                               </Text>
                             ) : ( null )}
                           </View>
@@ -286,7 +323,7 @@ const ProductDetailModal = React.memo((props: IProps) => {
                             <NumberContainer>
                               <NumberOfItems>{selectedAddons.find(i => i.id === item.id)?.qtd || 0}</NumberOfItems>
                             </NumberContainer>
-                            <IconContainer onPress={() => _handleAddAddon(item, addon.group.id, addon.group.name)}>
+                            <IconContainer onPress={() => _handleAddAddon(item, addon.group.id, addon.group.name, addon.group.max_choices)}>
                               <Icon
                                 name="ios-add-circle-outline"
                                 color={Colors['titles']}
@@ -297,6 +334,8 @@ const ProductDetailModal = React.memo((props: IProps) => {
                         </View>
                       </OptionContainer>
                     )
+                  } else {
+                    return ( null )
                   }
                 })
               }

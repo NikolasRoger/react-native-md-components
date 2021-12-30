@@ -12,14 +12,15 @@ interface IProps {
 
 const HorizontalInfo = (props: IProps) => {
   return (
-    <>
+    <React.Fragment>
       {props.items.map((item, index) => (
+        item ? (
         <Container key={index}>
-          <Info>{item.title}:</Info>
-          <InfoValue>{item.value}</InfoValue>
+          <Info>{item?.title}:</Info>
+          <InfoValue>{item?.value}</InfoValue>
         </Container>
-      ))}
-    </>
+      ) : ( null )))}
+    </React.Fragment>
   );
 };
 

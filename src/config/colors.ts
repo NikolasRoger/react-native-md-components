@@ -6,6 +6,7 @@ const Colors = {
     danger: "#F33C3C",
     confirm: "#86DE71",
     bg: "#F3F5F9",
+    neutro: '#d4d4d4',
     label: "#555555",
     disabled: "#9F9F9F",
     text: "#5E5754",

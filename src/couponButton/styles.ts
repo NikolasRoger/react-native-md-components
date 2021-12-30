@@ -6,18 +6,14 @@ type TText = {
   size?: string;
 }
 
-type TContainer = {
-  coupon?: boolean;
-}
-
-export const Container = styled.TouchableOpacity<TContainer>`
+export const Container = styled.TouchableOpacity`
   width: 100%;
   background-color: white;
   margin: 10px 0;
   border-radius: 10px;
   justify-content: center;
   padding: 12px;
-  flex-direction: ${({ coupon }) => coupon ? 'column' : 'row'};
+  flex-direction: column;
   align-items: center;
 `;
 

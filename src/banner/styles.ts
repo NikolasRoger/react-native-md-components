@@ -42,6 +42,7 @@ export const Title = styled.Text<TTitleProps>`
   font-size: 18px;
   color: ${(props) => Colors[props.textColor]};
   font-weight: 600;
+  text-align: center;
   margin-top: ${(props) => props.m || "0px"};
   font-family: ${Fonts.primarySemiBold};
   font-weight: 600;

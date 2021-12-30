@@ -16,6 +16,10 @@ type TImageContainerProps = {
   imageSize?: string
 }
 
+type TInforContainer = {
+  separator?: boolean
+}
+
 export const Container  = styled.View<TContainerProps>`
   margin-top: ${(props) => props.mt || '20px'};
   align-content: center;
@@ -77,18 +81,24 @@ export const LikeContainer  = styled.TouchableOpacity`
   top: -8px;
 `
 
-export const InfoContainer = styled.View`
-  flex-direction: column;
-  margin-left: 10px;
+export const InfoContainer = styled.View<TInforContainer>`
+  flex-direction: row;
+  align-items: center;
+  /* margin-left: 10px; */
   justify-content: space-between;
   flex: 1;
   align-content: center;
+  border-bottom-width: ${({separator}) => separator ? 1 + 'px' : 0};
+  padding-bottom: ${({separator}) => separator ? 24 + 'px' : 0};
+  border-color: #e4e4e4;
 `
 
 export const ProductText = styled.Text<TProductTextProps>`
-  font-family: ${(props) => props.font || Fonts['primarySemiBold']};
-  font-size: ${(props) => props.size || '16px'};
+  font-family: ${(props) => props.font || Fonts.primary};
+  font-size: ${(props) => props.size || '18px'};
   color: ${(props) => props.color || Colors['titles']};
+  margin-top: 2px;
+  /* padding-right: 24px; */
 `
 
 export const ArrowIconContainer = styled.TouchableOpacity`

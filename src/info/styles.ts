@@ -32,7 +32,7 @@ export const Container = styled.View<TContainerProps>`
   border-radius: 20px;
   background-color: white;
   margin: ${(props) => props.m || '20px 0'};
-  
+
   padding: 20px;
 `;
 

@@ -7,13 +7,14 @@ interface IProps {
   title: string;
   m?: string;
   mb?: string;
+  ml?: string
   weight?: number;
   size?: number;
 }
 
 const Title = (props: IProps) => {
   return (
-    <BaseTitle m={props.m} size={props.size} weight={props.weight} color={props.color} mb={props.mb}>
+    <BaseTitle ml={props.ml} m={props.m} size={props.size} weight={props.weight} color={props.color} mb={props.mb}>
       {props.title}
     </BaseTitle>
   );

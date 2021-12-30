@@ -28,7 +28,7 @@ const HorizontalCategories = (props: IProps) => {
         marginTop: 20,
       }}
       contentContainerStyle={{
-        paddingLeft: 30,
+        paddingLeft: 24,
       }}
       keyExtractor={item => item.title}
       data={props.items}

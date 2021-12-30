@@ -36,4 +36,4 @@ const CartButton = (props: IProps) => {
     </Container>
   );
 };
-export default CartButton;
+export default React.memo(CartButton);

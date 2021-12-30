@@ -2,7 +2,6 @@ import React from 'react';
 import Colors from '../config/colors';
 import { FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import IconFA from 'react-native-vector-icons/FontAwesome5';
 import { Container, ProductImageContainer } from './styles';
 import FastImage from 'react-native-fast-image';
 import {
@@ -12,6 +11,8 @@ import {
   Info,
   DotSeparator,
 } from '../horizontalEstablishment/styles';
+
+const productWithoutImage = require('../assets/sem-imagem.webp');
 
 interface IItem {
   title: string;
@@ -37,14 +38,13 @@ const HorizontalProducts = (props: IProps) => {
         marginTop: 20,
       }}
       contentContainerStyle={{
-        paddingLeft: 30,
+        paddingLeft: 24,
       }}
       keyExtractor={item => item.infoData.id}
       data={props.items}
       renderItem={({ item }) => (
         <Container onPress={() => props.onPress && props.onPress(item.infoData)}>
           <ProductImageContainer
-            m="10px"
             style={{
               shadowColor: '#000',
               shadowOffset: {
@@ -56,17 +56,13 @@ const HorizontalProducts = (props: IProps) => {
               backgroundColor: "white",
               elevation: 4,
             }}>
-            {item.image ? (
-              <FastImage
-                source={{ uri: item.image }}
-                resizeMode="cover"
-                style={{ width: '100%', height: '100%' }}
-              />
-            ) : (
-              <IconFA name="image" size={64} />
-            )}
+            <FastImage
+              source={item.image ? { uri: item.image } : productWithoutImage}
+              resizeMode="cover"
+              style={{ width: '100%', height: '100%' }}
+            />
           </ProductImageContainer>
-          <Name textColor={Colors['titles']} numberOfLines={3}>{item.title}</Name>
+          <Name textColor={Colors['titles']} numberOfLines={1}>{item.title}</Name>
           <InfoContainer mt="5px" dataColor={Colors['secondaryTitle']}>
             {
               item.heartCount && (
@@ -88,8 +84,8 @@ const HorizontalProducts = (props: IProps) => {
               <Info mr="10px">{item.value}</Info>
             </DataContainer>
             <DataContainer>
-              <DotSeparator />
-              <Info mr="10px" mt="2px">
+              {/* <DotSeparator /> */}
+              <Info numberOfLines={2} mr="10px" mt="2px">
                 {item.establishment}
               </Info>
             </DataContainer>

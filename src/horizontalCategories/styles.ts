@@ -37,6 +37,7 @@ export const Categorie = styled.Text`
   font-family: ${Fonts.primarySemiBold};
   letter-spacing: .5px;
   font-weight: 600;
+  text-align: center;
   color: ${Colors.titles};
   margin-top: 10px;
   width: 100%;

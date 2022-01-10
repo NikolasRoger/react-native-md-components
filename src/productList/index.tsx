@@ -170,6 +170,7 @@ const ProductList = (props: IProps) => {
                       size="14px"
                       font={Fonts["primary"]}
                       color={Colors["text"]}
+                      numberOfLines={2}
                     >
                       {item.productDescription}
                     </ProductText>

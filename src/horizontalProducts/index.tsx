@@ -43,7 +43,7 @@ const HorizontalProducts = (props: IProps) => {
       keyExtractor={item => item.infoData.id}
       data={props.items}
       renderItem={({ item }) => (
-        <Container onPress={() => props.onPress && props.onPress(item.infoData)}>
+        <Container onPress={() => props.onPress && props.onPress(item.infoData.marketplace_id)}>
           <ProductImageContainer
             style={{
               shadowColor: '#000',
@@ -58,7 +58,7 @@ const HorizontalProducts = (props: IProps) => {
             }}>
             <FastImage
               source={item.image ? { uri: item.image } : productWithoutImage}
-              resizeMode="cover"
+              resizeMode="contain"
               style={{ width: '100%', height: '100%' }}
             />
           </ProductImageContainer>

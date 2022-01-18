@@ -91,6 +91,7 @@ export const InfoContainer = styled.View<TInforContainer>`
   border-bottom-width: ${({separator}) => separator ? 1 + 'px' : 0};
   padding-bottom: ${({separator}) => separator ? 24 + 'px' : 0};
   border-color: #e4e4e4;
+  padding-right: 18px;
 `
 
 export const ProductText = styled.Text<TProductTextProps>`

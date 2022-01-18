@@ -150,7 +150,9 @@ const ProductList = (props: IProps) => {
               <TouchableOpacity onPress={() => {
                 props.onPress && props.onPress(item.infoData)
               }}>
-                <ProductText>{item.productName}</ProductText>
+                <View style={{ width: '100%', paddingRight: 16 }}>
+                  <ProductText>{item.productName}</ProductText>
+                </View>
                 <View style={{ flexDirection: 'row', marginVertical: 2, flexWrap: 'wrap', paddingTop: 2 }}>
                   {item?.infoData?.addons?.length > 0 ? item.infoData.addons.map((addon, index) => (
                     <React.Fragment key={addon.id}>
@@ -170,6 +172,7 @@ const ProductList = (props: IProps) => {
                       size="14px"
                       font={Fonts["primary"]}
                       color={Colors["text"]}
+                      numberOfLines={2}
                     >
                       {item.productDescription}
                     </ProductText>

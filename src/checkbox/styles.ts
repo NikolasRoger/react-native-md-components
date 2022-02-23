@@ -44,9 +44,12 @@ export const InsideCheck = styled.View`
 
 export const InfosContainer = styled.View`
   flex: 1;
+  flex-direction: row;
+  align-items: center;
 `
 
 export const TitleContainer = styled.View`
   flex-direction: row;
   align-items: center;
+  margin-left: 8px;
 `

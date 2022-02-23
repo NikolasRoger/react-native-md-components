@@ -24,8 +24,11 @@ export const ImageBg = styled.View<TImageBgProps>`
   height: 96px;
   width: 96px;
   /* margin-right: 8px; */
-  background-color: ${(props) => props.color};
+  background-color: transparent;
   border-radius: 10px;
+  background-color: white;
+  border-width: 1px;
+  border-color: #eee;
   padding-top: 10px;
   padding-right: 11px;
   padding-bottom: 10px;

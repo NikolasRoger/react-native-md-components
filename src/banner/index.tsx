@@ -1,11 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Colors, {TColors} from '../config/colors';
-import {
-  CategorieTitle,
-  CategorieDescription,
-  IconContainer,
-} from '../header/styles';
+import Colors, { TColors } from '../config/colors';
+import { CategorieTitle, CategorieDescription, IconContainer } from '../header/styles';
 import {
   Container,
   Illustration,
@@ -15,8 +11,8 @@ import {
   ContentContainer,
   TitleContainer,
 } from './styles';
-import {useNavigation} from '@react-navigation/native';
-import type {StackNavigationProp} from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+import type { StackNavigationProp } from '@react-navigation/stack';
 
 interface IProps {
   textColor?: TColors;

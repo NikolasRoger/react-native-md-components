@@ -13,6 +13,9 @@ export const ProductImageContainer = styled.View<TProductImageContainer>`
   width: 120px;
   height: 120px;
   border-radius: 10px;
+  border-width: 1px;
+  border-color: #eee;
+  background-color: white;
   justify-content: center;
   align-items: center;
   overflow: hidden;

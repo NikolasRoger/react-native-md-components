@@ -32,6 +32,7 @@ import SelectCouponModal from './selectCouponModal'
 import ServiceInfoModal from './serviceInfoModal'
 import TabBar from './tabBar'
 import Title from './title'
+import CouponButton from './couponButton'
 
 export {
   AddressSelect,
@@ -68,4 +69,5 @@ export {
   ServiceInfoModal,
   TabBar,
   Title,
+  CouponButton
 }

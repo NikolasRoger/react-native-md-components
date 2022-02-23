@@ -1,7 +1,8 @@
 import React from 'react';
 import Colors from '../config/colors';
-import {Dot} from '../bottomTabBar/styles';
-import {InfoContent} from '../info/styles';
+import { Dot } from '../bottomTabBar/styles';
+import { InfoContent } from '../info/styles';
+import Icon from 'react-native-vector-icons/Ionicons'
 import {
   Container,
   Text,
@@ -32,6 +33,7 @@ const Checkbox = (props: IProps) => {
       {props.items.map((item, index) => (
         <Container key={index} mb={props.mb} onPress={() => props.onSelect && props.onSelect(item.infoData)}>
           <InfosContainer>
+            <Icon name="card" size={24} color={Colors.titles} />
             <TitleContainer>
               <Text>{item.title}</Text>
               {item.subtitle && (

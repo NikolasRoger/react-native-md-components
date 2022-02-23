@@ -36,6 +36,7 @@ export const Logo = styled.Image.attrs({
 })`
   width: 100%;
   height: 64px;
+  margin-top: 24px;
 `
 
 export const Title = styled.Text<TTitleProps>`

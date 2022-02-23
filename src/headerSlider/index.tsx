@@ -1,5 +1,5 @@
-import React, {useCallback, memo, useRef, useState} from 'react';
-import {Dimensions} from 'react-native';
+import React, { useCallback, memo, useRef, useState } from 'react';
+import { Dimensions } from 'react-native';
 import Colors from '../config/colors';
 import {
   Container,
@@ -9,7 +9,7 @@ import {
   PaginationDot,
 } from './styles';
 
-const {width: windowWidth} = Dimensions.get('window');
+const { width: windowWidth } = Dimensions.get('window');
 
 const slideList = [
   {
@@ -20,11 +20,11 @@ const slideList = [
   },
 ];
 
-const Slide = memo(function Slide({data}: any) {
+const Slide = memo(function Slide({ data }: any) {
   return <SlideImage source={data.image} />
 });
 
-function Pagination({index}: any) {
+function Pagination({ index }: any) {
   return (
     <SlidePagination>
       {slideList.map((_, i) => {
@@ -72,7 +72,7 @@ export default function Carousel() {
     ),
   };
 
-  const renderItem = useCallback(function renderItem({item}) {
+  const renderItem = useCallback(function renderItem({ item }) {
     return <Slide data={item} />;
   }, []);
 

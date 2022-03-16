@@ -10,7 +10,7 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import Colors from "../config/colors";
 import { useNavigation } from "@react-navigation/native";
-import type { StackNavigationProp } from "@react-navigation/stack";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface IProps {
   title: string;
@@ -22,7 +22,7 @@ interface IProps {
 }
 
 const Header = (props: IProps) => {
-  const navigation = useNavigation<StackNavigationProp<any>>();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <Container>
       {props.displayGoBack && (

@@ -12,7 +12,7 @@ import {
   TitleContainer,
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
-import type { StackNavigationProp } from '@react-navigation/stack';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface IProps {
   textColor?: TColors;
@@ -35,7 +35,7 @@ const images: any = {
 };
 
 const Banner = (props: IProps) => {
-  const navigation = useNavigation<StackNavigationProp<any>>();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <Container>
       {props.showLogo ? (

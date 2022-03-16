@@ -1,12 +1,12 @@
 import React from 'react';
 import Colors from '../config/colors';
-import {Container, Coin} from './styles';
-import {useNavigation} from '@react-navigation/native';
-import type {StackNavigationProp} from '@react-navigation/stack';
+import { Container, Coin } from './styles';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const IconButton = () => {
   const navigation =
-    useNavigation<StackNavigationProp<any, 'HomeTabs'>>();
+    useNavigation<NativeStackNavigationProp<any, 'HomeTabs'>>();
   return (
     <Container
       onPress={() => navigation.push('SurveyInitial')}

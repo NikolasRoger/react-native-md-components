@@ -11,11 +11,6 @@ const BottomTabBar = ({
   descriptors,
   navigation,
 }: BottomTabBarProps) => {
-  const focusedOptions = descriptors[state.routes[state.index].key].options;
-
-  if (focusedOptions.tabBarVisible === false) {
-    return null;
-  }
 
   function IconComponent({ name, size, ...rest }: any) {
     switch (name.split("-")[0]) {
@@ -51,8 +46,8 @@ const BottomTabBar = ({
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
             : options.title !== undefined
-            ? options.title
-            : route.name;
+              ? options.title
+              : route.name;
 
         const isFocused = state.index === index;
 

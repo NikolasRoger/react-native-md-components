@@ -12,6 +12,7 @@ type TBaseTitleProps = {
 }
 
 export const BaseTitle = styled.Text<TBaseTitleProps>`
+  flex: 1;
   font-size: ${props => props.size ? props.size + 'px' : 20 + 'px'};
   font-family: ${Fonts.primarySemiBold};
   font-weight: ${props => props.weight ? props.weight : 600};

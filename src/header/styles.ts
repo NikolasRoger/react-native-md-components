@@ -16,7 +16,6 @@ export const Container = styled.View`
   padding: 30px;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
 `;
 
 export const IconContainer = styled.TouchableOpacity`
